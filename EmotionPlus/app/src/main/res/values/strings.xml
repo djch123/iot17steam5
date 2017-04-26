@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">EmotionPlus</string>
+    <string name="title_main">Main</string>
+    <string name="title_homekit">HomeKit</string>
+    <string name="title_recommendation">Recommendations</string>
+    <string name="title_game">Game</string>
+</resources>

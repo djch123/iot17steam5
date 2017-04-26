@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_main"
+        android:icon="@drawable/ic_face_black_24dp"
+        android:title="@string/title_main" />
+
+    <item
+        android:id="@+id/navigation_homekit"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_homekit" />
+
+    <item
+        android:id="@+id/navigation_recommendation"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/title_recommendation" />
+
+    <item
+        android:id="@+id/navigation_game"
+        android:icon="@drawable/ic_grade_black_24dp"
+        android:title="@string/title_game" />
+
+
+</menu>
