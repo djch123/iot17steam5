@@ -69,3 +69,12 @@ hs_err_pid*
 
 # api_key_file
 */local.json
+
+
+
+
+#changda’s ignore
+server/node_modules/
+server/keys/
+server/imgs/
+server/music/
