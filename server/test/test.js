@@ -1,34 +1,12 @@
-var firstMethod = function() {
-   var promise = new Promise(function(resolve, reject){
-      setTimeout(function() {
-         console.log('first method completed');
-         resolve({data: '123'});
-      }, 2000);
-   });
-   return promise;
-};
- 
- 
-var secondMethod = function(someStuff) {
-   var promise = new Promise(function(resolve, reject){
-      setTimeout(function() {
-         console.log('second method completed');
-         resolve({newData: someStuff.data + ' some more data'});
-      }, 2000);
-   });
-   return promise;
-};
- 
-var thirdMethod = function(someStuff) {
-   var promise = new Promise(function(resolve, reject){
-      setTimeout(function() {
-         console.log('third method completed');
-         resolve({result: someStuff.newData});
-      }, 3000);
-   });
-   return promise;
-};
- 
-firstMethod()
-   .then(secondMethod)
-   .then(thirdMethod);
+var get_mood = require('../lib/get_mood');
+var scores = {
+      "anger": 0,
+      "contempt": 13,
+      "disgust": 1.02152783e-11,
+      "fear": 100,
+      "happiness": 0.9999999,
+      "neutral": 1.31694478e-7,
+      "sadness": 6.04054263e-12,
+      "surprise": 3.92249462e-11
+}
+console.log(get_mood(scores));
