@@ -18,6 +18,10 @@ router.get('/resume', function() {
 	player.resume();
 });
 
+router.get('/stop', function() {
+	player.stop();
+});
+
 router.get('/next', function(req, res) {
 	index = index + 1 >= list.happy.length ?  0 : index + 1;
 	res.send(index.toString());

@@ -72,9 +72,3 @@ hs_err_pid*
 
 
 
-
-#changda’s ignore
-server/node_modules/
-server/keys/
-server/imgs/
-server/music/

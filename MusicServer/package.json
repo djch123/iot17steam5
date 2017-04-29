@@ -1,5 +1,5 @@
 {
-  "name": "server",
+  "name": "music_server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,12 +9,7 @@
   "author": "neolicd",
   "license": "ISC",
   "dependencies": {
-    "audio-context": "^0.1.0",
-    "audio-loader": "^0.6.0",
-    "audio-play": "^2.1.1",
     "express": "^4.15.2",
-    "music-api": "^0.2.8",
-    "request": "^2.81.0",
     "stupid-player": "^0.3.1"
   }
 }
