@@ -1,7 +1,7 @@
 var player = new (require('stupid-player'));
 
 
-var callback = function() {
+var callback = function(buffer) {
 }
 
 player.on(player.EVENT_PLAY, callback);
@@ -19,4 +19,8 @@ module.exports.pause = function() {
 
 module.exports.resume = function() {
 	player.resume();
+}
+
+module.exports.stop = function() {
+	player.stop();
 }
