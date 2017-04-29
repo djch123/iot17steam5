@@ -1,0 +1,15 @@
+{
+  "name": "music_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "neolicd",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "stupid-player": "^0.3.1"
+  }
+}
