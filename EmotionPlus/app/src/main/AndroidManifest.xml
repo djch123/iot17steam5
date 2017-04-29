@@ -18,6 +18,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".RecommendationActivity"
+            android:label="RecommendationActivity">
+        </activity>
+
+        <activity
+            android:name=".HomekitActivity"
+            android:label="HomekitActivity">
+        </activity>
+
+        <activity
+            android:name=".HistoryActivity"
+            android:label="HistoryActivity">
+        </activity>
+
+        <activity
+            android:name=".GameActivity"
+            android:label="GameActivity">
+        </activity>
     </application>
 
 </manifest>
