@@ -3,24 +3,27 @@ import config
 import json
 from capture import capture
 import requests
+app = Flask(__name__)
 
-fi = open('conf.json', 'r')
+fi = open('config.json', 'r')
 config.conf = json.loads(fi.read())
+conf = config.conf
 fi.close()
+
 global cur_emotion
-cur_emotion = config['default_emotion']
+cur_emotion = conf['default_emotion']
 
 @app.route('/capture')
 def capture():
-	image_path = config['image_path']
-	anaylze_url = "http://" + config['anaylze_ip'] + ":3000/anaylze"
+	image_path = conf['image_path']
+	anaylze_url = "http://" + conf['anaylze_ip'] + ":3000/anaylze"
 	try:
 		capture(image_path)
 		image = open(image_path)
 		data = image.read()
 		image.close()
 		res = requests.post(url=anaylze_url,
-					data=data}
+					data=data)
 					# headers={'Content-Type': 'application/octet-stream'})
 		res.raise_for_status()
 		j = res.json()
@@ -29,7 +32,7 @@ def capture():
 			cur_emotion = j
 
 
-	except Exception e:
+	except Exception as e:
 		print str(e)
 		return str(e), 500
 
