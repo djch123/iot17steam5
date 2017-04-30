@@ -9,4 +9,6 @@
     <string name="tap_homekit">Tap here to view homekit</string>
     <string name="tap_recommendations">Tap here to view my recommendations</string>
     <string name="tap_game">Tap here to view games</string>
+    <string name="restaurant_recommended">Restaurant Recommended</string>
+    <string name="sports_recommendations">Sports Recommendations</string>
 </resources>
