@@ -20,7 +20,7 @@ def capture():
 		data = image.read()
 		image.close()
 		res = requests.post(url=anaylze_url,
-					data=data}
+					data=data)
 					# headers={'Content-Type': 'application/octet-stream'})
 		res.raise_for_status()
 		j = res.json()
