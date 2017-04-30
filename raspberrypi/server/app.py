@@ -29,6 +29,7 @@ def capture_helper():
 	j = res.json()
 	print "res" + str(j)
 	print "len:" + str(len(j))
+	global cur_emotion
 	print cur_emotion
 	if len(j) > 0 and "happiness" in j:
 		cur_emotion = j
@@ -45,6 +46,7 @@ def takeaphoto():
 
 @app.route('/emotion')
 def getCurEmotion():
+	global cur_emotion
 	return json.dumps(cur_emotion), 200
 
 
