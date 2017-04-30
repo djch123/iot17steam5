@@ -94,6 +94,37 @@
                 android:textColor="#80FFFFFF"
                 android:textSize="15sp" />
 
+            <ImageView
+                android:id="@+id/playSong"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_below="@+id/textViewSinger"
+                android:layout_marginTop="50dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/icon_musicplay" />
+
+            <ImageView
+                android:id="@+id/nextSong"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/playSong"
+                android:layout_below="@+id/textViewSinger"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/icon_next" />
+
+
+            <ImageView
+                android:id="@+id/previousSong"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toLeftOf="@+id/playSong"
+                android:layout_below="@+id/textViewSinger"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/icon_lastsong" />
+
+
 
 
         </RelativeLayout>

@@ -17,6 +17,7 @@ import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.model.PHBridgeResource;
 import com.philips.lighting.model.PHHueError;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,8 @@ public class HomekitActivity extends AppCompatActivity {
 
     private Thread brightControllThread = null;
     private int brightThreadState = 0;
-
+    private int index = 0;
+    private List<String> songs = new ArrayList<>();
 
 
     @Override
@@ -55,6 +57,24 @@ public class HomekitActivity extends AppCompatActivity {
                 turnOff();
             }
         });
+
+        findViewById(R.id.previousSong).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(index>0){
+                    index--;
+                }
+            }
+        });
+
+        findViewById(R.id.nextSong).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(index<songs.size()-1){
+                    index++;
+                }
+            }
+        });
     }
 
     public void getEmotion(){
@@ -62,7 +82,15 @@ public class HomekitActivity extends AppCompatActivity {
 
     }
 
+    public List<String> getSongs(){
+        return new ArrayList<>();
+    }
+
     public void playMusic(){
+
+    }
+
+    public void stopMusic(){
 
     }
     public void turnOn() {
@@ -144,7 +172,5 @@ public class HomekitActivity extends AppCompatActivity {
             super.onDestroy();
         }
     }
-    public void connect(String status){
 
-    }
 }
