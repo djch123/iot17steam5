@@ -3,6 +3,8 @@ import config
 import json
 from capture import capture
 import requests
+from random import randint
+
 app = Flask(__name__)
 
 fi = open('config.json', 'r')
@@ -13,6 +15,35 @@ fi.close()
 global cur_emotion
 cur_emotion = conf['default_emotion']
 
+global weekly_emotion
+def setup():
+	global weekly_emotion
+	weekly_emotion = {"data":[]}
+	for i in range(0, 6):
+		weekly_emotion['data'].append({
+				"anger": randint(0,20),
+	      		"contempt": randint(0,20),
+	      		"disgust": randint(0,20),
+	      		"fear": randint(0,20),
+	      		"happiness": randint(0,20),
+	      		"neutral": randint(0,20),
+	      		"sadness": randint(0,20),
+	      		"surprise": randint(0,20)
+			})
+	#today's data
+	weekly_emotion['data'].append({
+				"anger": 0,
+	      		"contempt": 0,
+	      		"disgust": 0,
+	      		"fear": 0,
+	      		"happiness": 0,
+	      		"neutral": 0,
+	      		"sadness": 0,
+	      		"surprise": 0
+			})
+
+
+setup()
 
 def capture_helper():
 	image_path = conf['image_path']
@@ -39,6 +70,11 @@ def capture_helper():
 def takeaphoto():
 	try:
 		capture_helper()
+		global weekly_emotion, cur_emotion
+		max_emotion_type = max(cur_emotion, key=lambda k: cur_emotion[k])
+		today_emotion = weekly_emotion['data'][6]
+		if max_emotion_type in today_emotion: today_emotion[max_emotion_type] += 1
+		
 		return "OK", 200
 	except Exception as e:
 		print str(e)
@@ -52,7 +88,8 @@ def getCurEmotion():
 
 @app.route('/emotion/week')
 def getWeeklyEmotion():
-	return "ok"
+	global weekly_emotion
+	return json.dumps(weekly_emotion), 200
 
 
 
