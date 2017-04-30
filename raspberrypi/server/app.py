@@ -4,16 +4,17 @@ import json
 from capture import capture
 import requests
 
-fi = open('conf.json', 'r')
+fi = open('config.json', 'r')
 config.conf = json.loads(fi.read())
+conf = config.conf
 fi.close()
 global cur_emotion
 cur_emotion = config['default_emotion']
 
 @app.route('/capture')
 def capture():
-	image_path = config['image_path']
-	anaylze_url = "http://" + config['anaylze_ip'] + ":3000/anaylze"
+	image_path = conf['image_path']
+	anaylze_url = "http://" + conf['anaylze_ip'] + ":3000/anaylze"
 	try:
 		capture(image_path)
 		image = open(image_path)
@@ -29,7 +30,7 @@ def capture():
 			cur_emotion = j
 
 
-	except Exception e:
+	except Exception as e:
 		print str(e)
 		return str(e), 500
 
