@@ -25,21 +25,21 @@ def capture_helper():
 	res = requests.post(url=anaylze_url,
 				data=data,
 				headers={'Content-Type': 'application/octet-stream'})
-	# res.raise_for_status()
-	print res
+	res.raise_for_status()
+	
 	j = res.json()
 	print "res" + str(j)
-	if len(j) > 0:
+	if len(j) > 0 and "happiness" in j:
 		cur_emotion = j
 
 @app.route('/takeaphoto')
 def takeaphoto():
-#	try:
-	capture_helper()
-	return "OK", 200
-#	except Exception as e:
-#		print str(e)
-#		return str(e), 500
+	try:
+		capture_helper()
+		return "OK", 200
+	except Exception as e:
+		print str(e)
+		return str(e), 500
 
 @app.route('/emotion')
 def getCurEmotion():
