@@ -1,5 +1,6 @@
 import config
 import json
+import time
 
 import requests
 
@@ -14,6 +15,7 @@ url = "http://localhost:8888/takeaphoto"
 while True:
 	try:
 		time.sleep(int(conf["anaylze_duration"]))
-		requests.get(url)
+		r=requests.get(url)
+		print r
 	except Exception as e:
 		print str(e)
