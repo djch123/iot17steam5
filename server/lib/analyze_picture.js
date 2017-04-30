@@ -14,24 +14,16 @@ parameter.headers["Ocp-Apim-Subscription-Key"]
 
 
 
-module.exports = function(filename)
+module.exports = function(encodedImage, callback)
 {
-	var fs = require("fs");
-
-	fs.readFile(filename, function(err, data) {
-	  if (err) throw err;
-	  // Encode to base64
-	  var encodedImage = new Buffer(data, 'binary');
-
-	  parameter["body"] = encodedImage;
-
-
-	  request(parameter, function(err, response, body) {
-			if (err) {
-		       console.log('Error sending message: ', error)
-		    } else {
-		      console.log('Response: ', JSON.parse(response.body));
-		    }
-	  });
+	parameter["body"] = encodedImage;
+	
+	request(parameter, function(err, response, body) {
+		if (err) {
+	       console.log('Error sending message: ', error)
+	    } else {
+	      console.log('Response: ', JSON.parse(response.body));
+	      callback(JSON.parse(response.body));
+	    }
 	});
 }
