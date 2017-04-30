@@ -42,7 +42,7 @@ def takeaphoto():
 
 @app.route('/emotion')
 def getCurEmotion():
-	return cur_emotion
+	return json.dumps(cur_emotion), 200
 
 
 
