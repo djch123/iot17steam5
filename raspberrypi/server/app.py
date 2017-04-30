@@ -25,7 +25,8 @@ def capture_helper():
 	res = requests.post(url=anaylze_url,
 				data=data,
 				headers={'Content-Type': 'application/octet-stream'})
-	res.raise_for_status()
+	# res.raise_for_status()
+	print res
 	j = res.json()
 	print "res" + str(j)
 	if len(j) > 0:
@@ -43,6 +44,18 @@ def takeaphoto():
 @app.route('/emotion')
 def getCurEmotion():
 	return json.dumps(cur_emotion), 200
+
+
+@app.route('/emotion/week')
+def getWeeklyEmotion():
+	return "ok"
+
+
+
+
+
+
+
 
 
 
