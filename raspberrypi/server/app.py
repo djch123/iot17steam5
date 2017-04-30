@@ -16,16 +16,17 @@ cur_emotion = conf['default_emotion']
 
 def capture_helper():
 	image_path = conf['image_path']
-	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/anaylze"
+	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 	print anaylze_url
 	capture(image_path)
 	image = open(image_path)
 	data = image.read()
 	image.close()
 	res = requests.post(url=anaylze_url,
-				data=data)
-				# headers={'Content-Type': 'application/octet-stream'})
-	res.raise_for_status()
+				data=data,
+				headers={'Content-Type': 'application/octet-stream'})
+	# res.raise_for_status()
+	print res
 	j = res.json()
 	print "res" + str(j)
 	if len(j) > 0:
@@ -33,16 +34,28 @@ def capture_helper():
 
 @app.route('/takeaphoto')
 def takeaphoto():
-	try:
-		capture_helper()
-		return "OK", 200
-	except Exception as e:
-		print str(e)
-		return str(e), 500
+#	try:
+	capture_helper()
+	return "OK", 200
+#	except Exception as e:
+#		print str(e)
+#		return str(e), 500
 
 @app.route('/emotion')
 def getCurEmotion():
 	return json.dumps(cur_emotion), 200
+
+
+@app.route('/emotion/week')
+def getWeeklyEmotion():
+	return "ok"
+
+
+
+
+
+
+
 
 
 
