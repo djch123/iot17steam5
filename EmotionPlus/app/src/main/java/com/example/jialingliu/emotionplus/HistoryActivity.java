@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class HistoryActivity extends BaseActivity {
     private RadarChart mChart;
-
+    private static final int cnt = 8;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,8 +73,7 @@ public class HistoryActivity extends BaseActivity {
         xAxis.setYOffset(0f);
         xAxis.setXOffset(0f);
         xAxis.setValueFormatter(new IAxisValueFormatter() {
-
-            private String[] mActivities = new String[]{"Burger", "Steak", "Salad", "Pasta", "Pizza"};
+            private String[] mActivities = new String[]{"Anger", "Contempt", "Disgust", "Fear", "Happiness", "Neutral", "Sadness", "Surprise"};
 
             @Override
             public String getFormattedValue(float value, AxisBase axis) {
@@ -85,7 +84,7 @@ public class HistoryActivity extends BaseActivity {
 
         YAxis yAxis = mChart.getYAxis();
         yAxis.setTypeface(mTfLight);
-        yAxis.setLabelCount(5, false);
+        yAxis.setLabelCount(cnt, false);
         yAxis.setTextSize(9f);
         yAxis.setAxisMinimum(0f);
         yAxis.setAxisMaximum(80f);
@@ -205,10 +204,10 @@ public class HistoryActivity extends BaseActivity {
 
         float mult = 80;
         float min = 20;
-        int cnt = 5;
+//        int cnt = 5;
 
-        ArrayList<RadarEntry> entries1 = new ArrayList<RadarEntry>();
-        ArrayList<RadarEntry> entries2 = new ArrayList<RadarEntry>();
+        ArrayList<RadarEntry> entries1 = new ArrayList<>();
+        ArrayList<RadarEntry> entries2 = new ArrayList<>();
 
         // NOTE: The order of the entries when being added to the entries array determines their position around the center of
         // the chart.
@@ -220,7 +219,7 @@ public class HistoryActivity extends BaseActivity {
             entries2.add(new RadarEntry(val2));
         }
 
-        RadarDataSet set1 = new RadarDataSet(entries1, "Last Week");
+        RadarDataSet set1 = new RadarDataSet(entries1, "Yesterday");
         set1.setColor(Color.rgb(103, 110, 129));
         set1.setFillColor(Color.rgb(103, 110, 129));
         set1.setDrawFilled(true);
@@ -229,7 +228,7 @@ public class HistoryActivity extends BaseActivity {
         set1.setDrawHighlightCircleEnabled(true);
         set1.setDrawHighlightIndicators(false);
 
-        RadarDataSet set2 = new RadarDataSet(entries2, "This Week");
+        RadarDataSet set2 = new RadarDataSet(entries2, "Today");
         set2.setColor(Color.rgb(121, 162, 175));
         set2.setFillColor(Color.rgb(121, 162, 175));
         set2.setDrawFilled(true);
@@ -238,7 +237,7 @@ public class HistoryActivity extends BaseActivity {
         set2.setDrawHighlightCircleEnabled(true);
         set2.setDrawHighlightIndicators(false);
 
-        ArrayList<IRadarDataSet> sets = new ArrayList<IRadarDataSet>();
+        ArrayList<IRadarDataSet> sets = new ArrayList<>();
         sets.add(set1);
         sets.add(set2);
 
