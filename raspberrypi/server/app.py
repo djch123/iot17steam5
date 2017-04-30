@@ -16,7 +16,7 @@ cur_emotion = conf['default_emotion']
 
 def capture_helper():
 	image_path = conf['image_path']
-	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/anaylze"
+	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 	print anaylze_url
 	capture(image_path)
 	image = open(image_path)
