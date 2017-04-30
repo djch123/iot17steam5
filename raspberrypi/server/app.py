@@ -17,10 +17,11 @@ cur_emotion = conf['default_emotion']
 
 global weekly_emotion
 def setup():
+	global weekly_emotion
 	weekly_emotion = {"data":[]}
 	for i in range(0, 6):
 		weekly_emotion['data'].append({
-				"anger": randint(0,20)
+				"anger": randint(0,20),
 	      		"contempt": randint(0,20),
 	      		"disgust": randint(0,20),
 	      		"fear": randint(0,20),
