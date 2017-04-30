@@ -1,0 +1,14 @@
+{  
+   "image_path": "./image.jpg",
+   "anaylze_ip": "172.29.93.218",
+   "anaylze_port": "3000",
+   "default_emotion": {"anger": 0,
+      		"contempt": 0,
+      		"disgust": 0,
+      		"fear": 0,
+      		"happiness": 1,
+      		"neutral": 0,
+      		"sadness": 0,
+      		"surprise": 0
+		}
+}
