@@ -172,6 +172,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="6"/>
                                 <state key="normal" title="PlayPause" image="Play"/>
+                                <connections>
+                                    <action selector="PlayPauseSwitch:" destination="u5h-q6-3bz" eventType="touchUpInside" id="hXc-6b-HC1"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U30-je-0df">
                                 <rect key="frame" x="148" y="405" width="32" height="32"/>
@@ -183,6 +186,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next" image="Next"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-5F-tmH">
+                                <rect key="frame" x="141" y="531" width="92" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="TestButton"/>
+                                <connections>
+                                    <action selector="test:" destination="u5h-q6-3bz" eventType="touchUpInside" id="XNz-Q3-9IC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -192,6 +203,9 @@
                     <connections>
                         <outlet property="lightBrightness" destination="nFR-xx-Eus" id="SXa-5z-gb1"/>
                         <outlet property="lightSwitch" destination="jcY-aK-uma" id="dO2-PQ-eGX"/>
+                        <outlet property="musicBackgroundImg" destination="laO-Hg-nEW" id="lqr-9J-tZ0"/>
+                        <outlet property="musicSinger" destination="fNK-03-gb0" id="OQz-et-WGg"/>
+                        <outlet property="musicTitle" destination="W04-kM-6ZQ" id="pym-jz-nLT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPa-Qv-RVD" userLabel="First Responder" sceneMemberID="firstResponder"/>

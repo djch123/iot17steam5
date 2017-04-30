@@ -28,7 +28,7 @@ class HomeKitViewController: UIViewController {
         lightBrightness.maximumValue = 254
         
         
-        var LIGHT_URL = "\(IP_ADDR)/api/\(USERNAME)/lights/\(LIGHT_ID)"
+        let LIGHT_URL = "\(IP_ADDR)/api/\(USERNAME)/lights/\(LIGHT_ID)"
         
         //         get HUE value
         Alamofire.request(
@@ -101,7 +101,6 @@ class HomeKitViewController: UIViewController {
         //        print (PARAMS)
         
         // send brightness to HUE
-//        HUEStateChange (url: BRIGHT_URL, body: ["bri":lightBrightness])
         Alamofire.request(
             URL(string: BRIGHT_URL)!,
             method: .put,
@@ -112,13 +111,91 @@ class HomeKitViewController: UIViewController {
         self.trueBrightness = lightBrightness
     }
     
-//    func HUEStateChange(url:String, body:[String: Any]) {
-//        Alamofire.request(
-//            URL(string: url)!,
-//            method: .put,
-//            parameters: body,
-//            encoding: JSONEncoding.default).responseJSON { response in
-//                print(response)
+    func PrintRes(response:Any) {
+        print(response)
+    }
+    
+    @IBAction func test(_ sender: UIButton) {
+        Core()
+    }
+    
+    @IBOutlet weak var musicBackgroundImg: UIImageView!
+    @IBOutlet weak var musicTitle: UILabel!
+    @IBOutlet weak var musicSinger: UILabel!
+    var musicList: [String:String] = [:]
+    
+    func Core () {
+        print("Core")
+        // GET emotion
+        // after obtain the response from GET
+        // POST emotion and get response of a list of music
+        // POST emotion and get response of HUE light brightness
+        let EMOTION_SERVER = "http://172.29.92.105:8888"
+        let RECOMMENDATION_SERVER = "2.2.2.2"
+        
+        let EMOTION_URL = "\(EMOTION_SERVER)/emotion"
+        let MUSIC_LIST_URL = "\(RECOMMENDATION_SERVER)/recommendation/music"
+        
+//        let PAUSE_MUSIC_URL = "\(MUSIC_SERVER)/music/pause"
+//        let RESUME_MUSIC_URL = "\(MUSIC_SERVER)/music/resume"
+//        
+        print(EMOTION_URL)
+        Alamofire.request(
+            URL(string: EMOTION_URL)!,
+            method: .get).responseJSON { response in
+                print(response)
+                if let json = response.result.value as? [String: Any] {
+                    // emotion get!
+                    print(json)
+                    
+                    Alamofire.request(
+                        URL(string: MUSIC_LIST_URL)!,
+                        method: .post,
+                        parameters: json,
+                        encoding: JSONEncoding.default).responseJSON { response in
+                            // music list get!
+                            print(response)
+                            if let json = response.result.value as? [String: String] {
+                                // music list json get!
+                                self.musicList = json
+                                self.StartPlayMusic()
+                            }
+                    }
+                }
+        }
+    }
+    
+    func StartPlayMusic () {
+//        let MUSIC_SERVER = "3.3.3.3"
+//        let PLAY_MUSIC_URL = "\(MUSIC_SERVER)/music?song="
+//        
+//        for music in musicList {
+////            musicBackgroundImg.image how to set img src?
+//            var musicID = music["id"]
+//            self.musicTitle = music["title"]
+//            self.musicSinger = music["singer"]
+//            Alamofire.request(
+//                URL(string: "\(PLAY_MUSIC_URL)\(musicID)"),
+//                method: .get)
 //        }
-//    }
+        
+        self.playState = 1
+    }
+    var playState = 0
+    
+    @IBAction func PlayPauseSwitch(_ sender: UIButton) {
+//        var image
+        if playState == 1 {
+            let image = UIImage(named: "Play")
+            sender.setImage(image, for: UIControlState.normal)
+            playState = 0
+            // pause the music
+        } else {
+            let image = UIImage(named: "Pause")
+            sender.setImage(image, for: UIControlState.normal)
+            playState = 1
+            // resume the music
+        }
+        
+    }
 }
