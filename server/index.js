@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
+app.use('/analyze', require('./routers/analyze'));
+
 app.use('/recommendation', require('./routers/recommendation'));
 
 

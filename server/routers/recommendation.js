@@ -11,6 +11,13 @@ router.post('/restraunt', function(req, res) {
 	res.send(restraunts[mood]);
 });
 
+router.post('/sports', function(req, res) {
+	if (!req.body) return res.sendStatus(400);
+	var scores = req.body;
+	var mood = get_mood(scores);
+	res.send(sports[mood]);
+});
+
 router.post('/music', function(req, res) {
 	if (!req.body) return res.sendStatus(400);
 	var scores = req.body;
