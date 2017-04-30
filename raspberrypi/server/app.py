@@ -30,10 +30,10 @@ def capture_helper():
 	print "res" + str(j)
 	print "len:" + str(len(j))
 	global cur_emotion
-	print cur_emotion
+	
 	if len(j) > 0 and "happiness" in j:
 		cur_emotion = j
-	print cur_emotion
+	
 
 @app.route('/takeaphoto')
 def takeaphoto():
