@@ -26,11 +26,13 @@ def capture_helper():
 				data=data,
 				headers={'Content-Type': 'application/octet-stream'})
 	res.raise_for_status()
-	
 	j = res.json()
 	print "res" + str(j)
+	print "len:" + str(len(j))
+	print "prev: " + str(cur_emotion)
 	if len(j) > 0 and "happiness" in j:
 		cur_emotion = j
+	print "curr: " + str(cur_emotion)		
 
 @app.route('/takeaphoto')
 def takeaphoto():
