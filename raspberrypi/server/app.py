@@ -29,10 +29,10 @@ def capture_helper():
 	j = res.json()
 	print "res" + str(j)
 	print "len:" + str(len(j))
-	print "prev: " + str(cur_emotion)
+	print cur_emotion
 	if len(j) > 0 and "happiness" in j:
 		cur_emotion = j
-	print "curr: " + str(cur_emotion)		
+	print cur_emotion
 
 @app.route('/takeaphoto')
 def takeaphoto():
@@ -51,12 +51,6 @@ def getCurEmotion():
 @app.route('/emotion/week')
 def getWeeklyEmotion():
 	return "ok"
-
-
-
-
-
-
 
 
 
