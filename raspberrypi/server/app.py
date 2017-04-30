@@ -3,13 +3,15 @@ import config
 import json
 from capture import capture
 import requests
+app = Flask(__name__)
 
 fi = open('config.json', 'r')
 config.conf = json.loads(fi.read())
 conf = config.conf
 fi.close()
+
 global cur_emotion
-cur_emotion = config['default_emotion']
+cur_emotion = conf['default_emotion']
 
 @app.route('/capture')
 def capture():
