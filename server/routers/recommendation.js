@@ -3,27 +3,30 @@ var express = require('express')
   , get_mood = require('../lib/get_mood')
   , restraunts = require('../recommendations/restraunts')
   , songs = require('../recommendations/songs')
-  , sports = require('../recommendations/sports');
+  , sports = require('../recommendations/sports')
+  , proc = require('../lib/proc');
 
-router.post('/restraunt', function(req, res) {
+router.post('/restaurant', function(req, res) {
 	if (!req.body) return res.sendStatus(400);
 	var scores = req.body;
 	var mood = get_mood(scores);
-	res.send(restraunts[mood]);
+	res.send(proc(restraunts[mood]));
 });
 
 router.post('/sports', function(req, res) {
 	if (!req.body) return res.sendStatus(400);
 	var scores = req.body;
 	var mood = get_mood(scores);
-	res.send(sports[mood]);
+	res.send(proc(sports[mood]));
 });
 
 router.post('/music', function(req, res) {
 	if (!req.body) return res.sendStatus(400);
 	var scores = req.body;
+	console.log(scores);
 	var mood = get_mood(scores);
-	res.send(songs[mood]);
+	console.log(mood);
+	res.send(proc(songs[mood]));
 });
 
 

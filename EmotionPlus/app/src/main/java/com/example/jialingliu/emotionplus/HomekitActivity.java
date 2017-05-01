@@ -56,6 +56,7 @@ public class HomekitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_homekit);
         //textView = (TextView) findViewById(R.id.helloworld1);
         // textView.setText("Here is the homekit");
+
         phHueSDK = PHHueSDK.create();
 
 
@@ -133,6 +134,7 @@ public class HomekitActivity extends AppCompatActivity {
                 // If the response is JSONObject instead of expected JSONArray
                 Log.i("taghere","response"+response);
                 try {
+                    getHueBrightness(response);
                     sendEmotion(response);
                 }catch(Exception e){
 
@@ -156,6 +158,40 @@ public class HomekitActivity extends AppCompatActivity {
         });
     }
 
+    public void getHueBrightness(JSONObject response) throws Exception{
+        StringEntity entity = new StringEntity(response.toString());
+        HttpUtils.post(null,"http://172.29.93.218:3000/hue", entity, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                Log.i("taghere","response"+response);
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+                // Pull out the first event on the public timeline
+                //JSONObject firstEvent = timeline.get(0);
+                //String tweetText = firstEvent.getString("text");
+
+                // Do something with the response
+                System.out.println(timeline);
+
+                try {
+                    //playMusic();
+                    //setBrightness(100);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
+                Log.i("taghere1","failure");
+            }
+
+        });
+    }
     public void sendEmotion(JSONObject response) throws Exception{
 
         StringEntity entity = new StringEntity(response.toString());
@@ -326,6 +362,19 @@ public class HomekitActivity extends AppCompatActivity {
         for (PHLight light : allLights) {
             PHLightState lightState = new PHLightState();
             lightState.setOn(false);
+            bridge.updateLightState(light, lightState, listener);
+        }
+    }
+
+    public void setBrightness(int bright) {
+        stopThread();
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+        List<PHLight> allLights = bridge.getResourceCache().getAllLights();
+        Integer brightness = bright;
+        for (PHLight light : allLights) {
+            PHLightState lightState = new PHLightState();
+            lightState.setOn(true);
+            lightState.setBrightness(brightness);
             bridge.updateLightState(light, lightState, listener);
         }
     }
