@@ -41,7 +41,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hi3-XT-qI6" id="y1d-X3-uOC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXV-kC-hiS">
@@ -232,6 +232,15 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="HomeKit" image="second" id="BXj-tR-ca7"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="lightBrightness" destination="nFR-xx-Eus" id="hzj-gj-VaC"/>
+                        <outlet property="lightSwitch" destination="jcY-aK-uma" id="9Yn-qz-qa0"/>
+                        <outlet property="musicBackground" destination="laO-Hg-nEW" id="Nmg-W3-0Qa"/>
+                        <outlet property="musicBackgroundImg" destination="laO-Hg-nEW" id="Sk9-wT-XvH"/>
+                        <outlet property="musicSinger" destination="fNK-03-gb0" id="uep-hH-3X0"/>
+                        <outlet property="musicTitle" destination="W04-kM-6ZQ" id="8aE-Q8-vIS"/>
+                        <outlet property="playPauseBtn" destination="F91-Ge-Yhm" id="s5z-XK-53M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPa-Qv-RVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

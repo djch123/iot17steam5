@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2278DE141EB6FDBE00AD9472 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE121EB6FDBE00AD9472 /* Alamofire.framework */; };
+		2278DE151EB6FDBE00AD9472 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE121EB6FDBE00AD9472 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2278DE161EB6FDBE00AD9472 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */; };
+		2278DE171EB6FDBE00AD9472 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2278DE181EB6FDD100AD9472 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FDD52D1EB5959500FD5FA4 /* Charts.framework */; };
+		2278DE191EB6FDD100AD9472 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22FDD52D1EB5959500FD5FA4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22A7F4FB1EB443B200D6F0FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F4FA1EB443B200D6F0FD /* AppDelegate.swift */; };
 		22A7F4FD1EB443B200D6F0FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F4FC1EB443B200D6F0FD /* MainViewController.swift */; };
 		22A7F4FF1EB443B200D6F0FD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F4FE1EB443B200D6F0FD /* GameViewController.swift */; };
@@ -20,8 +26,6 @@
 		22B51E0B1EB45826002EBE85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B51E0A1EB45826002EBE85 /* Foundation.framework */; };
 		22B51E0D1EB45836002EBE85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B51E0C1EB45836002EBE85 /* UIKit.framework */; };
 		22B51E0F1EB45842002EBE85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B51E0E1EB45842002EBE85 /* CoreGraphics.framework */; };
-		22FDD5361EB5963100FD5FA4 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FDD52D1EB5959500FD5FA4 /* Charts.framework */; };
-		22FDD5371EB5963100FD5FA4 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22FDD52D1EB5959500FD5FA4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22FDD53C1EB5997C00FD5FA4 /* RadarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD53B1EB5997C00FD5FA4 /* RadarChartViewController.xib */; };
 		22FDD5461EB69A2700FD5FA4 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD5421EB69A2700FD5FA4 /* BalloonMarker.swift */; };
 		22FDD5471EB69A2700FD5FA4 /* RadarMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD5431EB69A2700FD5FA4 /* RadarMarkerView.swift */; };
@@ -46,6 +50,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2278DE1A1EB6FDD100AD9472 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
 		22A7F50E1EB443B200D6F0FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22A7F4EF1EB443B100D6F0FD /* Project object */;
@@ -74,13 +85,6 @@
 			remoteGlobalIDString = 06165F2E1D8110E600722320;
 			remoteInfo = ChartsTests;
 		};
-		22FDD5381EB5963100FD5FA4 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 06165F231D8110E600722320;
-			remoteInfo = Charts;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,7 +94,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				22FDD5371EB5963100FD5FA4 /* Charts.framework in Embed Frameworks */,
+				2278DE191EB6FDD100AD9472 /* Charts.framework in Embed Frameworks */,
+				2278DE171EB6FDBE00AD9472 /* SwiftyJSON.framework in Embed Frameworks */,
+				2278DE151EB6FDBE00AD9472 /* Alamofire.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +104,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2278DE121EB6FDBE00AD9472 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		22A7F4F71EB443B200D6F0FD /* EmotionPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmotionPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A7F4FA1EB443B200D6F0FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22A7F4FC1EB443B200D6F0FD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -150,9 +158,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B51E0F1EB45842002EBE85 /* CoreGraphics.framework in Frameworks */,
-				22FDD5361EB5963100FD5FA4 /* Charts.framework in Frameworks */,
 				22B51E0D1EB45836002EBE85 /* UIKit.framework in Frameworks */,
 				22B51E0B1EB45826002EBE85 /* Foundation.framework in Frameworks */,
+				2278DE181EB6FDD100AD9472 /* Charts.framework in Frameworks */,
+				2278DE141EB6FDBE00AD9472 /* Alamofire.framework in Frameworks */,
+				2278DE161EB6FDBE00AD9472 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +186,8 @@
 		22A7F4EE1EB443B100D6F0FD = {
 			isa = PBXGroup;
 			children = (
+				2278DE121EB6FDBE00AD9472 /* Alamofire.framework */,
+				2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */,
 				22B51E111EB458B5002EBE85 /* EmotionPlus-Bridging-Header.h */,
 				22FDD54A1EB69A9A00FD5FA4 /* Resources */,
 				22FDD5411EB69A2700FD5FA4 /* Components */,
@@ -327,7 +339,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				22FDD5391EB5963100FD5FA4 /* PBXTargetDependency */,
+				2278DE1B1EB6FDD100AD9472 /* PBXTargetDependency */,
 			);
 			name = EmotionPlus;
 			productName = EmotionPlus;
@@ -520,6 +532,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2278DE1B1EB6FDD100AD9472 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 2278DE1A1EB6FDD100AD9472 /* PBXContainerItemProxy */;
+		};
 		22A7F50F1EB443B200D6F0FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 22A7F4F61EB443B100D6F0FD /* EmotionPlus */;
@@ -529,11 +546,6 @@
 			isa = PBXTargetDependency;
 			target = 22A7F4F61EB443B100D6F0FD /* EmotionPlus */;
 			targetProxy = 22A7F5191EB443B200D6F0FD /* PBXContainerItemProxy */;
-		};
-		22FDD5391EB5963100FD5FA4 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Charts;
-			targetProxy = 22FDD5381EB5963100FD5FA4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -656,6 +668,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_ACTIVITY_MODE = "";
 				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = EmotionPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iot17steam5.EmotionPlus;
@@ -673,6 +690,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_ACTIVITY_MODE = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = EmotionPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iot17steam5.EmotionPlus;
