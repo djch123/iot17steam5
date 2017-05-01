@@ -48,6 +48,7 @@ public class HomekitActivity extends AppCompatActivity {
     private int index = 0;
     private JSONArray songs = new JSONArray();
     private boolean play = true;
+    private int emotionLight = 0;
 
 
     @Override
@@ -71,6 +72,13 @@ public class HomekitActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 turnOff();
+            }
+        });
+
+        findViewById(R.id.buttonEmotion).setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setBrightness(emotionLight);
             }
         });
 
@@ -159,43 +167,31 @@ public class HomekitActivity extends AppCompatActivity {
     }
 
     public void getHueBrightness(JSONObject response) throws Exception{
+
         StringEntity entity = new StringEntity(response.toString());
-        HttpUtils.post(null,"http://172.29.93.218:3000/hue", entity, new JsonHttpResponseHandler() {
+
+        HttpUtils.post(null,"http://172.29.93.218:3000/hue", entity, new TextHttpResponseHandler() {
+
+
             @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            public void onSuccess(int statusCode, Header[] headers, String response) {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.i("taghere","response"+response);
+                Log.i("taghere33333","response"+response);
+                emotionLight=Integer.parseInt(response);
+                setBrightness(Integer.parseInt(response));
 
             }
 
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
-                // Pull out the first event on the public timeline
-                //JSONObject firstEvent = timeline.get(0);
-                //String tweetText = firstEvent.getString("text");
 
-                // Do something with the response
-                System.out.println(timeline);
-
-                try {
-                    //playMusic();
-                    //setBrightness(100);
-                }catch(Exception e){
-                    e.printStackTrace();
-                }
-
-            }
             @Override
             public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
-                Log.i("taghere1","failure");
+                Log.i("taghere3333333","failure");
             }
 
         });
     }
     public void sendEmotion(JSONObject response) throws Exception{
-
         StringEntity entity = new StringEntity(response.toString());
-
 
         HttpUtils.post(null,"http://172.29.93.218:3000/recommendation/music", entity, new JsonHttpResponseHandler() {
             @Override
