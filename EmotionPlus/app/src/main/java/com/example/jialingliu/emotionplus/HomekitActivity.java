@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.TextHttpResponseHandler;
 import com.philips.lighting.hue.listener.PHLightListener;
 import com.philips.lighting.hue.sdk.PHHueSDK;
 import com.philips.lighting.model.PHBridge;
@@ -26,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -49,6 +52,7 @@ public class HomekitActivity extends AppCompatActivity {
     private JSONArray songs = new JSONArray();
     private boolean play = true;
     private int emotionLight = 0;
+    private String emotion = "start";
 
 
     @Override
@@ -126,12 +130,27 @@ public class HomekitActivity extends AppCompatActivity {
             }
         });
 
-        try {
+        /*try {
             getEmotion();
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
+        final Handler h = new Handler();
+        final int delay = 10000; //milliseconds
+
+        h.postDelayed(new Runnable(){
+            public void run(){
+                //do something
+                try {
+                    getEmotion();
+                    h.postDelayed(this, delay);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        }, delay);
     }
 
     public void getEmotion() throws JSONException{
@@ -142,8 +161,27 @@ public class HomekitActivity extends AppCompatActivity {
                 // If the response is JSONObject instead of expected JSONArray
                 Log.i("taghere","response"+response);
                 try {
-                    getHueBrightness(response);
-                    sendEmotion(response);
+                    double emotionValueNow = 0.0;
+                    String emotionNow="";
+                    Iterator<String> iter = response.keys();
+                    while (iter.hasNext()) {
+                        String key = iter.next();
+                        try {
+                            double value = (double)response.get(key);
+                            if(value>emotionValueNow){
+                                emotionValueNow=value;
+                                emotionNow = key;
+                            }
+                        } catch (JSONException e) {
+                            // Something went wrong!
+                        }
+                    }
+
+                    if(!emotionNow.equals(emotion)) {
+                        emotion=emotionNow;
+                        getHueBrightness(response);
+                        sendEmotion(response);
+                    }
                 }catch(Exception e){
 
                 }
