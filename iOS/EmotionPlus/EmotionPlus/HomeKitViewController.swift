@@ -13,9 +13,9 @@ import SwiftyJSON
 
 class HomeKitViewController: UIViewController {
     
-    var IP_ADDR = "http://192.168.1.119"
-    var LIGHT_ID = "2"
-    var USERNAME = "9qgwYPyqqt5TMW8BM2GuTtKCWe-dmqk81ezqQ3LO"
+    var IP_ADDR = "http://10.0.21.248"
+    var LIGHT_ID = "1"
+    var USERNAME = "-rJnC9YCU0BdyWcpaJoHV4E9Yv3pL2hWPxQHbPPq"
     
     var EMOTION_SERVER = "http://172.29.92.105:8888"
     var RECOMMENDATION_SERVER = "http://172.29.93.218:3000"
@@ -23,6 +23,7 @@ class HomeKitViewController: UIViewController {
     
     var EMOTION_URL = ""
     var MUSIC_LIST_URL = ""
+    var HUE_URL = ""
     
     var PLAY_MUSIC_URL = ""
     var PAUSE_MUSIC_URL = ""
@@ -38,6 +39,7 @@ class HomeKitViewController: UIViewController {
         
         self.EMOTION_URL = "\(EMOTION_SERVER)/emotion"
         self.MUSIC_LIST_URL = "\(RECOMMENDATION_SERVER)/recommendation/music"
+        self.HUE_URL = "\(RECOMMENDATION_SERVER)/hue"
         
         self.PLAY_MUSIC_URL = "\(MUSIC_SERVER)/music?song="
         self.PAUSE_MUSIC_URL = "\(MUSIC_SERVER)/music/pause"
@@ -45,7 +47,6 @@ class HomeKitViewController: UIViewController {
         
         lightBrightness.minimumValue = 1
         lightBrightness.maximumValue = 254
-        
         
         let LIGHT_URL = "\(IP_ADDR)/api/\(USERNAME)/lights/\(LIGHT_ID)"
         
@@ -70,7 +71,7 @@ class HomeKitViewController: UIViewController {
                 }
         }
         
-        Core()
+//        Core()
     }
     
     override func didReceiveMemoryWarning() {
@@ -140,7 +141,6 @@ class HomeKitViewController: UIViewController {
         Core()
     }
     
-    @IBOutlet weak var musicBackgroundImg: UIImageView!
     @IBOutlet weak var musicTitle: UILabel!
     @IBOutlet weak var musicSinger: UILabel!
     var musicList: JSON = []
@@ -168,6 +168,36 @@ class HomeKitViewController: UIViewController {
 //                    json["happiness"] = 1.0
 //                    json["neutral"] = 0.0
 //                    json["sadness"] = 0.0
+                    
+                    Alamofire.request(
+                        URL(string: self.HUE_URL)!,
+                        method: .post,
+                        parameters: json,
+                        encoding: JSONEncoding.default).responseString { response in
+                            // hue get!
+                            print ("HUE")
+                            print(response.result.value)
+                            
+                            let newBrightness = Int(response.result.value!)!
+                            print ("new brightness")
+                            print (newBrightness)
+                            let BRIGHT_URL = "\(self.IP_ADDR)/api/\(self.USERNAME)/lights/\(self.LIGHT_ID)/state"
+                            
+                            // send brightness to HUE
+                            Alamofire.request(
+                                URL(string: BRIGHT_URL)!,
+                                method: .put,
+                                parameters: ["bri":newBrightness, "on":true],
+                                encoding: JSONEncoding.default).responseJSON { response in
+                                    print(response)
+                            }
+                            self.trueBrightness = newBrightness
+                            self.lightSwitch.isOn = true
+                            self.lightBrightness.value = Float(newBrightness)
+                            
+                            
+                    }
+            
                     
                     Alamofire.request(
                         URL(string: self.MUSIC_LIST_URL)!,
@@ -207,11 +237,27 @@ class HomeKitViewController: UIViewController {
         var singer = music["singer"]
         var background = music["img"]
         var escaped_img_url = "http://\(background)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-        print(escaped_img_url)
+        print(escaped_img_url!)
         
         self.musicTitle.text = "\(musicName)"
         self.musicSinger.text = "\(singer)"
-        self.musicBackground.downloadedFrom(link: escaped_img_url!)
+        
+        if let url = URL(string: escaped_img_url!) {
+            if let data = try? Data(contentsOf: url) {
+                let newimage = UIImage(data: data)
+                self.musicBackground.image = newimage
+                self.bigBgd.image = newimage
+            }
+        }
+        
+//        if let data = try? Data(contentsOf: URL(escaped_img_url!)) {
+//            let newimage = UIImage(data: data)
+//            self.musicBackground.image = newimage
+//            self.bigBgd.image = newimage
+//        }
+        
+//        self.musicBackground.downloadedFrom(link: escaped_img_url!)
+//        self.bigBgd.downloadedFrom(link: escaped_img_url!)
         
         self.playState = 1
         let image = UIImage(named: "Pause")
@@ -236,6 +282,7 @@ class HomeKitViewController: UIViewController {
     var playState = 0
     var music_index = -1
     
+    @IBOutlet weak var bigBgd: UIImageView!
     @IBOutlet weak var musicBackground: UIImageView!
     @IBOutlet weak var playPauseBtn: UIButton!
     @IBAction func PlayPauseSwitch(_ sender: UIButton) {
@@ -282,30 +329,30 @@ class HomeKitViewController: UIViewController {
     }
 }
 
-func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
-    URLSession.shared.dataTask(with: url) {
-        (data, response, error) in
-        completion(data, response, error)
-        }.resume()
-}
+//func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+//    URLSession.shared.dataTask(with: url) {
+//        (data, response, error) in
+//        completion(data, response, error)
+//        }.resume()
+//}
 
-extension UIImageView {
-    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data)
-                else { return }
-            DispatchQueue.main.async() { () -> Void in
-                self.image = image
-            }
-            }.resume()
-    }
-    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
-        guard let url = URL(string: link) else { return }
-        downloadedFrom(url: url, contentMode: mode)
-    }
-}
+//extension UIImageView {
+//    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+//        contentMode = mode
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            guard
+//                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+//                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+//                let data = data, error == nil,
+//                let image = UIImage(data: data)
+//                else { return }
+//            DispatchQueue.main.async() { () -> Void in
+//                self.image = image
+//            }
+//            }.resume()
+//    }
+//    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+//        guard let url = URL(string: link) else { return }
+//        downloadedFrom(url: url, contentMode: mode)
+//    }
+//}
