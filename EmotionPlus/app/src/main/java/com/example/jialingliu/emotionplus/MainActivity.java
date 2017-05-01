@@ -16,6 +16,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.philips.lighting.quickstart.PHHomeActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
@@ -43,10 +45,14 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_homekit:
                     intent.setClass(getApplicationContext(), HomekitActivity.class);
                     startActivity(intent);
+                    //intent.setClass(getApplicationContext(), PHHomeActivity.class);
+                    //startActivity(intent);
                     imageView.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
                             intent.setClass(getApplicationContext(), HomekitActivity.class);
                             startActivity(intent);
+                            //intent.setClass(getApplicationContext(), PHHomeActivity.class);
+                          //  startActivity(intent);
                         }
                     });
                     tapTextView.setText(R.string.tap_homekit);
