@@ -60,6 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hueLayout"
+            android:layout_marginTop="20dp"
             android:text="Music" />
 
 
@@ -79,7 +80,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
                 android:text="Rock With You"
-                android:textColor="@android:color/white"
+                android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
 
@@ -91,7 +92,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp"
                 android:text="Michael Jackson"
-                android:textColor="#80FFFFFF"
+                android:textColor="@android:color/darker_gray"
                 android:textSize="15sp" />
 
             <ImageView
@@ -125,6 +126,14 @@
                 android:background="@drawable/icon_lastsong" />
 
 
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/playSong"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:layout_centerHorizontal="true" />
 
 
         </RelativeLayout>
