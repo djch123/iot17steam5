@@ -43,16 +43,16 @@ public class MainActivity extends AppCompatActivity {
                     tapTextView.setText(R.string.tap_emotion);
                     return true;
                 case R.id.navigation_homekit:
-                    intent.setClass(getApplicationContext(), HomekitActivity.class);
+                   // intent.setClass(getApplicationContext(), HomekitActivity.class);
+                  //  startActivity(intent);
+                    intent.setClass(getApplicationContext(), PHHomeActivity.class);
                     startActivity(intent);
-                    //intent.setClass(getApplicationContext(), PHHomeActivity.class);
-                    //startActivity(intent);
                     imageView.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                            intent.setClass(getApplicationContext(), HomekitActivity.class);
-                            startActivity(intent);
-                            //intent.setClass(getApplicationContext(), PHHomeActivity.class);
+                          //  intent.setClass(getApplicationContext(), HomekitActivity.class);
                           //  startActivity(intent);
+                            intent.setClass(getApplicationContext(), PHHomeActivity.class);
+                            startActivity(intent);
                         }
                     });
                     tapTextView.setText(R.string.tap_homekit);

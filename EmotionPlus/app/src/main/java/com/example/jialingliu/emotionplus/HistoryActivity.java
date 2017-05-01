@@ -28,11 +28,9 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -359,46 +357,19 @@ public class HistoryActivity extends BaseActivity {
     }
 
     private class EmotionHttpClient {
-        private static final String BASE_URL = "http://172.29.92.105:8888/emotion/week";
+        private final String BASE_URL = String.format("http://%s:8888/emotion/week", Constant.PI_IP);
         /**
          * get the most recent week emotion data from resberry-pi server
          * @return a list of maps, the frequency of each emotion on a specific day, plus total counts of emotions
          */
         List<Map<String, Integer>>  getEmotionData() {
-            HttpURLConnection con = null;
-            InputStream is = null;
             List<Map<String, Integer>> result;
             try {
-                con = (HttpURLConnection)(new URL(BASE_URL).openConnection());
-                con.setRequestMethod("GET");
-                con.setDoInput(true);
-                con.setConnectTimeout(500);
-                con.setReadTimeout(500);
-                con.connect();
-                // Let's read the response
-                StringBuilder buffer = new StringBuilder();
-                is = con.getInputStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(is));
-                String line;
-                while ((line = br.readLine()) != null) buffer.append(line).append("\r\n");
-                is.close();
-                con.disconnect();
-                System.out.println(buffer.toString());
-                result = processJson(buffer.toString());
+                Document document = Jsoup.connect(BASE_URL).timeout(1000).get();
+                result = processJson(document.toString());
                 return result;
             } catch(Throwable t) {
                 t.printStackTrace();
-            } finally {
-                try {
-                    if (is != null) {
-                        is.close();
-                    }
-                } catch(Exception ignored) {}
-                try {
-                    if (con != null) {
-                        con.disconnect();
-                    }
-                } catch(Throwable ignored) {}
             }
             System.out.println("server is down");
             String data = "{\"data\": [{\"neutral\": 14, \"happiness\": 17, \"disgust\": 12, \"anger\": 15, \"surprise\": 8, \"fear\": 5, \"sadness\": 6, \"contempt\": 10}, {\"neutral\": 10, \"happiness\": 1, \"disgust\": 5, \"anger\": 15, \"surprise\": 9, \"fear\": 12, \"sadness\": 13, \"contempt\": 13}, {\"neutral\": 2, \"happiness\": 9, \"disgust\": 14, \"anger\": 1, \"surprise\": 11, \"fear\": 6, \"sadness\": 12, \"contempt\": 8}, {\"neutral\": 6, \"happiness\": 14, \"disgust\": 2, \"anger\": 3, \"surprise\": 18, \"fear\": 16, \"sadness\": 4, \"contempt\": 9}, {\"neutral\": 2, \"happiness\": 0, \"disgust\": 19, \"anger\": 10, \"surprise\": 11, \"fear\": 16, \"sadness\": 17, \"contempt\": 17}, {\"neutral\": 7, \"happiness\": 19, \"disgust\": 14, \"anger\": 1, \"surprise\": 18, \"fear\": 12, \"sadness\": 17, \"contempt\": 0}, {\"neutral\": 0, \"happiness\": 0, \"disgust\": 0, \"anger\": 0, \"surprise\": 0, \"fear\": 0, \"sadness\": 0, \"contempt\": 0}]}";
@@ -415,16 +386,12 @@ public class HistoryActivity extends BaseActivity {
                 JsonObject jsonObject = jsonArray.get(i).getAsJsonObject();
                 Map<String, Integer> map = new HashMap<>();
                 int sum = 0;
-                sum += jsonObject.get("neutral").getAsInt() + jsonObject.get("happiness").getAsInt() + jsonObject.get("disgust").getAsInt() + jsonObject.get("anger").getAsInt() + jsonObject.get("surprise").getAsInt() + jsonObject.get("fear").getAsInt() + jsonObject.get("sadness").getAsInt() + jsonObject.get("contempt").getAsInt();
-                map.put("neutral", jsonObject.get("neutral").getAsInt());
-                map.put("happiness", jsonObject.get("happiness").getAsInt());
-                map.put("disgust", jsonObject.get("disgust").getAsInt());
-                map.put("anger", jsonObject.get("anger").getAsInt());
-                map.put("surprise", jsonObject.get("surprise").getAsInt());
-                map.put("fear", jsonObject.get("fear").getAsInt());
-                map.put("sadness", jsonObject.get("sadness").getAsInt());
-                map.put("contempt", jsonObject.get("contempt").getAsInt());
+                for (String mActivity : mActivities) {
+                    sum += jsonObject.get(mActivity).getAsInt();
+                    map.put(mActivity, jsonObject.get(mActivity).getAsInt());
+                }
                 map.put("sum", sum);
+
                 result.add(map);
             }
             return result;
