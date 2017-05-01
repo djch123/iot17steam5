@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -149,42 +149,39 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laO-Hg-nEW">
-                                <rect key="frame" x="33" y="335" width="309" height="114"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laO-Hg-nEW">
+                                <rect key="frame" x="33" y="335" width="114" height="114"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Music Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W04-kM-6ZQ">
-                                <rect key="frame" x="81" y="339" width="131" height="21"/>
+                                <rect key="frame" x="164" y="335" width="204" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Singer Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNK-03-gb0">
-                                <rect key="frame" x="81" y="368" width="99" height="21"/>
+                                <rect key="frame" x="164" y="364" width="187" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F91-Ge-Yhm">
-                                <rect key="frame" x="201" y="405" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="6"/>
-                                <state key="normal" title="PlayPause" image="Play"/>
-                                <connections>
-                                    <action selector="PlayPauseSwitch:" destination="u5h-q6-3bz" eventType="touchUpInside" id="hXc-6b-HC1"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U30-je-0df">
-                                <rect key="frame" x="148" y="405" width="32" height="32"/>
+                                <rect key="frame" x="161" y="405" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Prev" image="Previous"/>
+                                <connections>
+                                    <action selector="PrevBtnPrsd:" destination="u5h-q6-3bz" eventType="touchUpInside" id="Eei-Lm-MYx"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPz-2C-dia">
                                 <rect key="frame" x="250" y="405" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next" image="Next"/>
+                                <connections>
+                                    <action selector="NextBtnPrsd:" destination="u5h-q6-3bz" eventType="touchUpInside" id="jRA-2y-CmV"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWV-5F-tmH">
                                 <rect key="frame" x="141" y="531" width="92" height="30"/>
@@ -192,6 +189,15 @@
                                 <state key="normal" title="TestButton"/>
                                 <connections>
                                     <action selector="test:" destination="u5h-q6-3bz" eventType="touchUpInside" id="XNz-Q3-9IC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F91-Ge-Yhm">
+                                <rect key="frame" x="205" y="405" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                                <state key="normal" title="PlayPause" image="Play"/>
+                                <connections>
+                                    <action selector="PlayPauseSwitch:" destination="u5h-q6-3bz" eventType="touchUpInside" id="hXc-6b-HC1"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -203,9 +209,11 @@
                     <connections>
                         <outlet property="lightBrightness" destination="nFR-xx-Eus" id="SXa-5z-gb1"/>
                         <outlet property="lightSwitch" destination="jcY-aK-uma" id="dO2-PQ-eGX"/>
+                        <outlet property="musicBackground" destination="laO-Hg-nEW" id="Epo-jR-vuV"/>
                         <outlet property="musicBackgroundImg" destination="laO-Hg-nEW" id="lqr-9J-tZ0"/>
                         <outlet property="musicSinger" destination="fNK-03-gb0" id="OQz-et-WGg"/>
                         <outlet property="musicTitle" destination="W04-kM-6ZQ" id="pym-jz-nLT"/>
+                        <outlet property="playPauseBtn" destination="F91-Ge-Yhm" id="E4K-Nk-Yzz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPa-Qv-RVD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -235,9 +243,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Next" width="512" height="512"/>
-        <image name="Play" width="512" height="512"/>
-        <image name="Previous" width="512" height="512"/>
+        <image name="Next" width="128" height="128"/>
+        <image name="Play" width="128" height="128"/>
+        <image name="Previous" width="128" height="128"/>
         <image name="first" width="30" height="30"/>
         <image name="second" width="30" height="30"/>
     </resources>

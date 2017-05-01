@@ -17,6 +17,17 @@ class HomeKitViewController: UIViewController {
     var LIGHT_ID = "2"
     var USERNAME = "9qgwYPyqqt5TMW8BM2GuTtKCWe-dmqk81ezqQ3LO"
     
+    var EMOTION_SERVER = "http://172.29.92.105:8888"
+    var RECOMMENDATION_SERVER = "http://172.29.93.218:3000"
+    var MUSIC_SERVER = "http://172.29.93.218:8080"
+    
+    var EMOTION_URL = ""
+    var MUSIC_LIST_URL = ""
+    
+    var PLAY_MUSIC_URL = ""
+    var PAUSE_MUSIC_URL = ""
+    var RESUME_MUSIC_URL = ""
+    
     @IBOutlet weak var lightBrightness: UISlider!
     @IBOutlet weak var lightSwitch: UISwitch!
     var trueBrightness = 1
@@ -24,6 +35,14 @@ class HomeKitViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.EMOTION_URL = "\(EMOTION_SERVER)/emotion"
+        self.MUSIC_LIST_URL = "\(RECOMMENDATION_SERVER)/recommendation/music"
+        
+        self.PLAY_MUSIC_URL = "\(MUSIC_SERVER)/music?song="
+        self.PAUSE_MUSIC_URL = "\(MUSIC_SERVER)/music/pause"
+        self.RESUME_MUSIC_URL = "\(MUSIC_SERVER)/music/resume"
+        
         lightBrightness.minimumValue = 1
         lightBrightness.maximumValue = 254
         
@@ -50,6 +69,8 @@ class HomeKitViewController: UIViewController {
                     self.trueBrightness = Int(self.lightBrightness!.value)
                 }
         }
+        
+        Core()
     }
     
     override func didReceiveMemoryWarning() {
@@ -122,7 +143,7 @@ class HomeKitViewController: UIViewController {
     @IBOutlet weak var musicBackgroundImg: UIImageView!
     @IBOutlet weak var musicTitle: UILabel!
     @IBOutlet weak var musicSinger: UILabel!
-    var musicList: [String:String] = [:]
+    var musicList: JSON = []
     
     func Core () {
         print("Core")
@@ -130,72 +151,161 @@ class HomeKitViewController: UIViewController {
         // after obtain the response from GET
         // POST emotion and get response of a list of music
         // POST emotion and get response of HUE light brightness
-        let EMOTION_SERVER = "http://172.29.92.105:8888"
-        let RECOMMENDATION_SERVER = "2.2.2.2"
-        
-        let EMOTION_URL = "\(EMOTION_SERVER)/emotion"
-        let MUSIC_LIST_URL = "\(RECOMMENDATION_SERVER)/recommendation/music"
-        
-//        let PAUSE_MUSIC_URL = "\(MUSIC_SERVER)/music/pause"
-//        let RESUME_MUSIC_URL = "\(MUSIC_SERVER)/music/resume"
-//        
+
         print(EMOTION_URL)
         Alamofire.request(
             URL(string: EMOTION_URL)!,
             method: .get).responseJSON { response in
                 print(response)
-                if let json = response.result.value as? [String: Any] {
+                if var json = response.result.value as? [String: Any] {
                     // emotion get!
                     print(json)
+//                    json["anger"] = 0.0
+//                    json["fear"] = 0.0
+//                    json["surprise"] = 0.0
+//                    json["contempt"] = 0.0
+//                    json["disgust"] = 0.0
+//                    json["happiness"] = 1.0
+//                    json["neutral"] = 0.0
+//                    json["sadness"] = 0.0
                     
                     Alamofire.request(
-                        URL(string: MUSIC_LIST_URL)!,
+                        URL(string: self.MUSIC_LIST_URL)!,
                         method: .post,
                         parameters: json,
                         encoding: JSONEncoding.default).responseJSON { response in
                             // music list get!
                             print(response)
-                            if let json = response.result.value as? [String: String] {
+                            if let json = response.result.value{
                                 // music list json get!
-                                self.musicList = json
+                                print("music json")
+                                print(json)
+//                                var tmp = JSON(json)
+//                                print("tmp")
+//                                print(tmp)
+                                self.musicList = JSON(json)
+                                self.music_index = 0
+                                self.ChangeMusic()
                                 self.StartPlayMusic()
+                                
+                                self.playState = 1
+                                let image = UIImage(named: "Pause")
+                                self.playPauseBtn.setImage(image, for: UIControlState.normal)
                             }
                     }
                 }
         }
     }
     
-    func StartPlayMusic () {
-//        let MUSIC_SERVER = "3.3.3.3"
-//        let PLAY_MUSIC_URL = "\(MUSIC_SERVER)/music?song="
-//        
-//        for music in musicList {
-////            musicBackgroundImg.image how to set img src?
-//            var musicID = music["id"]
-//            self.musicTitle = music["title"]
-//            self.musicSinger = music["singer"]
-//            Alamofire.request(
-//                URL(string: "\(PLAY_MUSIC_URL)\(musicID)"),
-//                method: .get)
-//        }
+    func ChangeMusic () {
+        print("change music")
+        
+        var music = musicList[self.music_index]
+        print(music)
+        var musicID = music["name"]
+        var musicName = music["name"]
+        var singer = music["singer"]
+        var background = music["img"]
+        var escaped_img_url = "http://\(background)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+        print(escaped_img_url)
+        
+        self.musicTitle.text = "\(musicName)"
+        self.musicSinger.text = "\(singer)"
+        self.musicBackground.downloadedFrom(link: escaped_img_url!)
         
         self.playState = 1
+        let image = UIImage(named: "Pause")
+        playPauseBtn.setImage(image, for: UIControlState.normal)
+        StartPlayMusic()
+    }
+    
+    func StartPlayMusic () {
+        print("start new music")
+        
+//        for (_, music) in musicList {
+        var music = musicList[self.music_index]
+        print(music)
+//            musicBackgroundImg.image how to set img src?
+        let musicID = music["name"]
+        let escapeMusicName = "\(musicID)".addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+        let playMusicUrl = "\(PLAY_MUSIC_URL)\(escapeMusicName)"
+        print(playMusicUrl)
+        Alamofire.request(URL(string: playMusicUrl)!)
+        
     }
     var playState = 0
+    var music_index = -1
     
+    @IBOutlet weak var musicBackground: UIImageView!
+    @IBOutlet weak var playPauseBtn: UIButton!
     @IBAction func PlayPauseSwitch(_ sender: UIButton) {
 //        var image
         if playState == 1 {
             let image = UIImage(named: "Play")
             sender.setImage(image, for: UIControlState.normal)
             playState = 0
+            
             // pause the music
+            Alamofire.request( URL(string: "\(PAUSE_MUSIC_URL)")!, method: .get)
         } else {
             let image = UIImage(named: "Pause")
             sender.setImage(image, for: UIControlState.normal)
             playState = 1
             // resume the music
+            Alamofire.request( URL(string: "\(RESUME_MUSIC_URL)")!, method: .get)
         }
         
+    }
+    
+    @IBAction func PrevBtnPrsd(_ sender: UIButton) {
+        print("prev music")
+        self.music_index = self.music_index - 1
+        if (self.music_index < 0) {
+            self.music_index = musicList.count - 1
+        }
+        ChangeMusic()
+//        if playState == 1 {
+//            StartPlayMusic()
+//        }
+    }
+    
+    @IBAction func NextBtnPrsd(_ sender: UIButton) {
+        print("prev music")
+        self.music_index = self.music_index + 1
+        if (self.music_index >= musicList.count) {
+            self.music_index = 0
+        }
+        ChangeMusic()
+//        if playState == 1 {
+//            StartPlayMusic()
+//        }
+    }
+}
+
+func getDataFromUrl(url: URL, completion: @escaping (_ data: Data?, _  response: URLResponse?, _ error: Error?) -> Void) {
+    URLSession.shared.dataTask(with: url) {
+        (data, response, error) in
+        completion(data, response, error)
+        }.resume()
+}
+
+extension UIImageView {
+    func downloadedFrom(url: URL, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+        contentMode = mode
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard
+                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            DispatchQueue.main.async() { () -> Void in
+                self.image = image
+            }
+            }.resume()
+    }
+    func downloadedFrom(link: String, contentMode mode: UIViewContentMode = .scaleAspectFit) {
+        guard let url = URL(string: link) else { return }
+        downloadedFrom(url: url, contentMode: mode)
     }
 }
