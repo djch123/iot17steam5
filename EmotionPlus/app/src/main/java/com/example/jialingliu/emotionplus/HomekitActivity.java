@@ -65,7 +65,7 @@ public class HomekitActivity extends AppCompatActivity {
         // textView.setText("Here is the homekit");
 
         phHueSDK = PHHueSDK.create();
-        setBrightness(100);
+
 
 
         findViewById(R.id.buttonOn).setOnClickListener(new OnClickListener() {
@@ -125,12 +125,12 @@ public class HomekitActivity extends AppCompatActivity {
             }
         });
 
-       /* try {
+        try {
             getEmotion();
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }*/
+        }
     }
 
     public void getEmotion() throws JSONException{
@@ -141,6 +141,7 @@ public class HomekitActivity extends AppCompatActivity {
                 // If the response is JSONObject instead of expected JSONArray
                 Log.i("taghere","response"+response);
                 try {
+                    getHueBrightness(response);
                     sendEmotion(response);
                 }catch(Exception e){
 
@@ -164,6 +165,40 @@ public class HomekitActivity extends AppCompatActivity {
         });
     }
 
+    public void getHueBrightness(JSONObject response) throws Exception{
+        StringEntity entity = new StringEntity(response.toString());
+        HttpUtils.post(null,"http://172.29.93.218:3000/hue", entity, new JsonHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                // If the response is JSONObject instead of expected JSONArray
+                Log.i("taghere","response"+response);
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONArray timeline) {
+                // Pull out the first event on the public timeline
+                //JSONObject firstEvent = timeline.get(0);
+                //String tweetText = firstEvent.getString("text");
+
+                // Do something with the response
+                System.out.println(timeline);
+
+                try {
+                    //playMusic();
+                    //setBrightness(100);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
+                Log.i("taghere1","failure");
+            }
+
+        });
+    }
     public void sendEmotion(JSONObject response) throws Exception{
 
         StringEntity entity = new StringEntity(response.toString());
