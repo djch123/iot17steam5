@@ -1,5 +1,6 @@
 package com.example.jialingliu.emotionplus;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -9,12 +10,17 @@ import android.widget.TextView;
  */
 
 public class RecommendationActivity extends AppCompatActivity {
-    TextView textView;
+    private static final int cnt = 6;
+    private TextView restaurantText;
+    private TextView sportsText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
-        textView = (TextView) findViewById(R.id.helloworld2);
-        textView.setText("Here is the recommendations");
+        restaurantText = (TextView) findViewById(R.id.restauranttext);
+        sportsText = (TextView) findViewById(R.id.sportstext);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/DancingScript-Regular.ttf");
+        restaurantText.setTypeface(face);
+        sportsText.setTypeface(face);
     }
 }
