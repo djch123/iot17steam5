@@ -11,4 +11,11 @@
     <string name="tap_game">Tap here to view games</string>
     <string name="restaurant_recommended">Restaurant Recommended</string>
     <string name="sports_recommendations">Sports Recommendations</string>
+    <string name="today">Today</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="the_day_before_yesterday">The day before yesterday</string>
+    <string name="three_days_ago">Three days ago</string>
+    <string name="four_days_ago">Four days ago</string>
+    <string name="five_days_ago">Five days ago</string>
+    <string name="six_days_ago">Six days ago</string>
 </resources>
