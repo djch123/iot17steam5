@@ -4,4 +4,11 @@
     <string name="title_homekit">HomeKit</string>
     <string name="title_recommendation">Recommendations</string>
     <string name="title_game">Game</string>
+    <string name="tap_here">tap here</string>
+    <string name="tap_emotion">Tap here to view my emotions</string>
+    <string name="tap_homekit">Tap here to view homekit</string>
+    <string name="tap_recommendations">Tap here to view my recommendations</string>
+    <string name="tap_game">Tap here to view games</string>
+    <string name="restaurant_recommended">Restaurant Recommended</string>
+    <string name="sports_recommendations">Sports Recommendations</string>
 </resources>
