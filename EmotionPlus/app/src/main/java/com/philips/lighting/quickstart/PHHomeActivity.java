@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
+import com.example.jialingliu.emotionplus.HomekitActivity;
 import com.philips.lighting.data.AccessPointListAdapter;
 import com.philips.lighting.data.HueSharedPreferences;
 import com.philips.lighting.hue.sdk.PHAccessPoint;
@@ -274,8 +275,8 @@ public class PHHomeActivity extends Activity implements OnItemClickListener {
     }
     
     // Starting the main activity this way, prevents the PushLink Activity being shown when pressing the back button.
-    public void startMainActivity() {   
-        Intent intent = new Intent(getApplicationContext(), MyApplicationActivity.class);
+    public void startMainActivity() {
+        Intent intent = new Intent(getApplicationContext(), HomekitActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
