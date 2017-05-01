@@ -5,20 +5,24 @@ var express = require('express')
 
 
 router.get('/', function(req, res) {
-	console.log(req.song);
-	player.play(__dirname + '/../music/Cloud/' + req.query.song);
+	console.log(req.query.song);
+	player.play(__dirname + '/../music/server/' + req.query.song);
+	res.status(200).send("music played!");
 });
 
-router.get('/pause', function() {
+router.get('/pause', function(req, res) {
 	player.pause();
+	res.status(200).send("music paused!");
 });
 
-router.get('/resume', function() {
+router.get('/resume', function(req, res) {
 	player.resume();
+	res.status(200).send("music resumed!");
 });
 
-router.get('/stop', function() {
+router.get('/stop', function(req, res) {
 	player.stop();
+	res.status(200).send("music stopped!");
 });
 
 module.exports = router;
