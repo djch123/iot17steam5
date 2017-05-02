@@ -129,7 +129,7 @@ def captureinstream():
 		cmd = "cp " + conf['stream_snap_path'] + " " + os.path.join(APP_ROOT, "image.jpg")
 		print cmd
 		# os.system(cmd)
-		p = subprocess.Popen(cmd.split(), stdout = subprocess.STDOUT,stderr = subprocess.STDOUT)
+		p = subprocess.Popen(cmd.split(), stdout = subprocess.PIPE,stderr = subprocess.STDOUT)
 		p.wait()
 
 
