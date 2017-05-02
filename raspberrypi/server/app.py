@@ -208,9 +208,9 @@ def captureinstream():
 
 		# time.sleep(10)
 		if os.path.isfile(conf['image_path']): os.remove(conf['image_path'])
-		image_name = "image_"+ str(binascii.b2a_hex(os.urandom(10))) + ".jpg"
+		image_name = "image_"+ str(binascii.b2a_hex(os.urandom(10))) + ".jpg" # using a random name in case of cache
 		capture_helper(image_path=image_name)
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion), static_image_path=image_name)
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=cur_emotion, static_image_path=image_name)
 
 	except requests.exceptions.HTTPError as e:
 		print str(e)
