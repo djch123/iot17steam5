@@ -145,18 +145,21 @@ def captureinstream():
 
 		time.sleep(10)
 		capture_helper()
-		
-		return json.dumps(cur_emotion), 200
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
+	except requests.exceptions.HTTPError as e:
+		print str(e)
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
 	except Exception as e:
 		print str(e)
 		return str(e), 500
+		
 
 
 	
 
 @app.route("/lastsnp")
 def lastsnp():	
-	return send_from_directory('/var/lib/motion', "lastsnap.jpg")
+	return send_from_directory(os.path.dirname(__file__), "image.jpg")
 	
 
 
