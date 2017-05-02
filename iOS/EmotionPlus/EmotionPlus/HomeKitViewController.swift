@@ -14,7 +14,7 @@ import SwiftyJSON
 class HomeKitViewController: UIViewController {
     
     var IP_ADDR = "http://10.0.21.248"
-    var LIGHT_ID = "1"
+    var LIGHT_ID = "2"
     var USERNAME = "-rJnC9YCU0BdyWcpaJoHV4E9Yv3pL2hWPxQHbPPq"
     
     var EMOTION_SERVER = "http://172.29.92.105:8888"
@@ -71,7 +71,13 @@ class HomeKitViewController: UIViewController {
                 }
         }
         
-//        Core()
+        self.Core()
+        
+        weak var timer: Timer?
+        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+            // do something here
+            self?.Core()
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -137,13 +143,22 @@ class HomeKitViewController: UIViewController {
         print(response)
     }
     
-    @IBAction func test(_ sender: UIButton) {
-        Core()
-    }
+//    @IBAction func test(_ sender: UIButton) {
+//        self.Core()
+//        
+//        weak var timer: Timer?
+//        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+//            // do something here
+//            self?.Core()
+//        }
+//    }
     
     @IBOutlet weak var musicTitle: UILabel!
     @IBOutlet weak var musicSinger: UILabel!
     var musicList: JSON = []
+    
+    var oldEmotion: String = ""
+    var EMOTIONS: [String] = ["sadness","neutral","contempt","disgust","anger","surprise","fear","happiness"]
     
     func Core () {
         print("Core")
@@ -169,60 +184,73 @@ class HomeKitViewController: UIViewController {
 //                    json["neutral"] = 0.0
 //                    json["sadness"] = 0.0
                     
-                    Alamofire.request(
-                        URL(string: self.HUE_URL)!,
-                        method: .post,
-                        parameters: json,
-                        encoding: JSONEncoding.default).responseString { response in
-                            // hue get!
-                            print ("HUE")
-                            print(response.result.value)
-                            
-                            let newBrightness = Int(response.result.value!)!
-                            print ("new brightness")
-                            print (newBrightness)
-                            let BRIGHT_URL = "\(self.IP_ADDR)/api/\(self.USERNAME)/lights/\(self.LIGHT_ID)/state"
-                            
-                            // send brightness to HUE
-                            Alamofire.request(
-                                URL(string: BRIGHT_URL)!,
-                                method: .put,
-                                parameters: ["bri":newBrightness, "on":true],
-                                encoding: JSONEncoding.default).responseJSON { response in
-                                    print(response)
-                            }
-                            self.trueBrightness = newBrightness
-                            self.lightSwitch.isOn = true
-                            self.lightBrightness.value = Float(newBrightness)
-                            
-                            
+                    var maxIdx = self.EMOTIONS[0]
+                    for emotion in self.EMOTIONS {
+                        let val = json[emotion]! as! Float
+                        //                        print(val)
+                        if val > (json[maxIdx]! as! Float) {
+                            maxIdx = emotion
+                        }
                     }
-            
                     
-                    Alamofire.request(
-                        URL(string: self.MUSIC_LIST_URL)!,
-                        method: .post,
-                        parameters: json,
-                        encoding: JSONEncoding.default).responseJSON { response in
-                            // music list get!
-                            print(response)
-                            if let json = response.result.value{
-                                // music list json get!
-                                print("music json")
-                                print(json)
-//                                var tmp = JSON(json)
-//                                print("tmp")
-//                                print(tmp)
-                                self.musicList = JSON(json)
-                                self.music_index = 0
-                                self.ChangeMusic()
-                                self.StartPlayMusic()
+                    if maxIdx != self.oldEmotion {
+                        self.oldEmotion = maxIdx
+                        
+                        Alamofire.request(
+                            URL(string: self.HUE_URL)!,
+                            method: .post,
+                            parameters: json,
+                            encoding: JSONEncoding.default).responseString { response in
+                                // hue get!
+                                print ("HUE")
+                                print(response.result.value)
                                 
-                                self.playState = 1
-                                let image = UIImage(named: "Pause")
-                                self.playPauseBtn.setImage(image, for: UIControlState.normal)
-                            }
+                                let newBrightness = Int(response.result.value!)!
+                                print ("new brightness")
+                                print (newBrightness)
+                                let BRIGHT_URL = "\(self.IP_ADDR)/api/\(self.USERNAME)/lights/\(self.LIGHT_ID)/state"
+                                
+                                // send brightness to HUE
+                                Alamofire.request(
+                                    URL(string: BRIGHT_URL)!,
+                                    method: .put,
+                                    parameters: ["bri":newBrightness, "on":true],
+                                    encoding: JSONEncoding.default).responseJSON { response in
+                                        print(response)
+                                }
+                                self.trueBrightness = newBrightness
+                                self.lightSwitch.isOn = true
+                                self.lightBrightness.value = Float(newBrightness)
+                                
+                                
+                        }
+                        
+                        Alamofire.request(
+                            URL(string: self.MUSIC_LIST_URL)!,
+                            method: .post,
+                            parameters: json,
+                            encoding: JSONEncoding.default).responseJSON { response in
+                                // music list get!
+                                print(response)
+                                if let json = response.result.value{
+                                    // music list json get!
+                                    print("music json")
+                                    print(json)
+                                    //                                var tmp = JSON(json)
+                                    //                                print("tmp")
+                                    //                                print(tmp)
+                                    self.musicList = JSON(json)
+                                    self.music_index = 0
+                                    self.ChangeMusic()
+                                    self.StartPlayMusic()
+                                    
+                                    self.playState = 1
+                                    let image = UIImage(named: "Pause")
+                                    self.playPauseBtn.setImage(image, for: UIControlState.normal)
+                                }
+                        }
                     }
+                    
                 }
         }
     }
