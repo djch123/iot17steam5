@@ -95,8 +95,8 @@ def getWeeklyEmotion():
 
 @app.route("/stream")
 def stream():
-	stop_motion()
 	start_motion()
+	time.sleep(10)
 	return render_template('stream.html', ip = conf['pi_ip']) 
 
 def start_motion():
@@ -135,6 +135,8 @@ def captureinstream():
 	except Exception as e:
 		print str(e)
 		return str(e), 500
+	finally:
+		stop_motion()
 	
 
 @app.route("/lastsnp")
