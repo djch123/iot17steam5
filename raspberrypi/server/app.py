@@ -220,6 +220,7 @@ def captureinstream():
 	
 
 @app.route("/lastsnp")
+@nocache
 def lastsnp():	
 	return send_from_directory(os.path.dirname(__file__), "image.jpg")
 	
