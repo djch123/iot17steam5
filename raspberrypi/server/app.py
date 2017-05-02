@@ -4,6 +4,7 @@ import json
 from capture import capture
 import requests
 from random import randint
+import os.path, time
 
 app = Flask(__name__, static_url_path="", static_folder="static")
 
@@ -98,12 +99,14 @@ def stream():
 def captureinstream():
 	try:
 		r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
+		time.sleep(5)
 		r.raise_for_status()
 	except Exception as e:
 		print str(e)
 		return str(e), 500
 
 	try:
+
 		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 		image = open(conf["stream_snap_path"])
 		data = image.read()
