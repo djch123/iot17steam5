@@ -4,7 +4,7 @@ import json
 from capture import capture
 import requests
 from random import randint
-import os.path, time
+import os, time
 import subprocess
 
 
@@ -45,7 +45,7 @@ def setup():
 	      		"surprise": 0
 			})
 
-
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
 
 def capture_helper():
@@ -126,9 +126,9 @@ def captureinstream():
 
 		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 		# image = open(conf["stream_snap_path"])
-		p = subprocess.Popen(['mv', conf['stream_snap_path'], os.path.dirname(__file__) + "/image.jpg"])
+		p = subprocess.Popen(['cp', conf['stream_snap_path'], os.path.join(APP_ROOT, 'image_path')])
 		p.wait()
-		
+
 
 		image = open(conf["image_path"])
 		
