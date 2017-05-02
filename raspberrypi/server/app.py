@@ -42,7 +42,7 @@ def loop_capture():
 def start_loop():
 	print "start looping..."
 	global loop_subprocess
-	p = subprocess.Popen(['sudo', 'bash', 'loop/looping.sh'])
+	p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/looping.sh'])
 	p.wait()
 
 	# loop_subprocess = Process(target=loop_capture)
@@ -54,7 +54,7 @@ def stop_loop():
 
 	global loop_subprocess
 
-	p = subprocess.Popen(['sudo', 'bash', 'loop/stop.sh'])
+	p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/stop.sh'])
 	p.wait()
 
 	# if loop_subprocess is not None:
