@@ -12,6 +12,8 @@ app.use('/analyze', require('./routers/analyze'));
 
 app.use('/recommendation', require('./routers/recommendation'));
 
+app.use('/hue', require('./routers/hue'))
+
 
 app.listen(3000, function() {
 	console.log('listening on port: 3000');

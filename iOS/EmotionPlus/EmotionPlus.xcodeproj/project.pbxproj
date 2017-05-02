@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2278DE141EB6FDBE00AD9472 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE121EB6FDBE00AD9472 /* Alamofire.framework */; };
+		2278DE151EB6FDBE00AD9472 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE121EB6FDBE00AD9472 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2278DE161EB6FDBE00AD9472 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */; };
+		2278DE171EB6FDBE00AD9472 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2278DE181EB6FDD100AD9472 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FDD52D1EB5959500FD5FA4 /* Charts.framework */; };
+		2278DE191EB6FDD100AD9472 /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22FDD52D1EB5959500FD5FA4 /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		22A7F4FB1EB443B200D6F0FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F4FA1EB443B200D6F0FD /* AppDelegate.swift */; };
 		22A7F4FD1EB443B200D6F0FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F4FC1EB443B200D6F0FD /* MainViewController.swift */; };
 		22A7F4FF1EB443B200D6F0FD /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F4FE1EB443B200D6F0FD /* GameViewController.swift */; };
@@ -17,9 +23,40 @@
 		22A7F51D1EB443B200D6F0FD /* EmotionPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F51C1EB443B200D6F0FD /* EmotionPlusUITests.swift */; };
 		22A7F52B1EB4444600D6F0FD /* HomeKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F52A1EB4444600D6F0FD /* HomeKitViewController.swift */; };
 		22A7F52D1EB4447D00D6F0FD /* RecomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A7F52C1EB4447D00D6F0FD /* RecomViewController.swift */; };
+		22B51E0B1EB45826002EBE85 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B51E0A1EB45826002EBE85 /* Foundation.framework */; };
+		22B51E0D1EB45836002EBE85 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B51E0C1EB45836002EBE85 /* UIKit.framework */; };
+		22B51E0F1EB45842002EBE85 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B51E0E1EB45842002EBE85 /* CoreGraphics.framework */; };
+		22FDD53C1EB5997C00FD5FA4 /* RadarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD53B1EB5997C00FD5FA4 /* RadarChartViewController.xib */; };
+		22FDD5461EB69A2700FD5FA4 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD5421EB69A2700FD5FA4 /* BalloonMarker.swift */; };
+		22FDD5471EB69A2700FD5FA4 /* RadarMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD5431EB69A2700FD5FA4 /* RadarMarkerView.swift */; };
+		22FDD5481EB69A2700FD5FA4 /* RadarMarkerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5441EB69A2700FD5FA4 /* RadarMarkerView.xib */; };
+		22FDD5491EB69A2700FD5FA4 /* XYMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD5451EB69A2700FD5FA4 /* XYMarkerView.swift */; };
+		22FDD55C1EB69A9A00FD5FA4 /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD54C1EB69A9A00FD5FA4 /* Icon-29@2x.png */; };
+		22FDD55D1EB69A9A00FD5FA4 /* Icon-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD54D1EB69A9A00FD5FA4 /* Icon-29@3x.png */; };
+		22FDD55E1EB69A9A00FD5FA4 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD54E1EB69A9A00FD5FA4 /* Icon-40@2x.png */; };
+		22FDD55F1EB69A9A00FD5FA4 /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD54F1EB69A9A00FD5FA4 /* Icon-40@3x.png */; };
+		22FDD5601EB69A9A00FD5FA4 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5501EB69A9A00FD5FA4 /* Icon-60@2x.png */; };
+		22FDD5611EB69A9A00FD5FA4 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5511EB69A9A00FD5FA4 /* Icon-60@3x.png */; };
+		22FDD5621EB69A9A00FD5FA4 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5521EB69A9A00FD5FA4 /* iTunesArtwork */; };
+		22FDD5631EB69A9A00FD5FA4 /* iTunesArtwork@2x in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5531EB69A9A00FD5FA4 /* iTunesArtwork@2x */; };
+		22FDD5641EB69A9A00FD5FA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5541EB69A9A00FD5FA4 /* Images.xcassets */; };
+		22FDD5651EB69A9A00FD5FA4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5561EB69A9A00FD5FA4 /* Default-568h@2x.png */; };
+		22FDD5661EB69A9A00FD5FA4 /* Default-667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5571EB69A9A00FD5FA4 /* Default-667h@2x.png */; };
+		22FDD5671EB69A9A00FD5FA4 /* Default-736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5581EB69A9A00FD5FA4 /* Default-736h@3x.png */; };
+		22FDD5681EB69A9A00FD5FA4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD5591EB69A9A00FD5FA4 /* Default@2x.png */; };
+		22FDD5691EB69A9A00FD5FA4 /* radar_marker@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 22FDD55B1EB69A9A00FD5FA4 /* radar_marker@3x.png */; };
+		22FDD5701EB6A18B00FD5FA4 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD56F1EB6A18B00FD5FA4 /* HistoryTableViewCell.swift */; };
+		22FDD5721EB6A44B00FD5FA4 /* HistoryTableViewTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22FDD5711EB6A44B00FD5FA4 /* HistoryTableViewTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		2278DE1A1EB6FDD100AD9472 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 06165F231D8110E600722320;
+			remoteInfo = Charts;
+		};
 		22A7F50E1EB443B200D6F0FD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 22A7F4EF1EB443B100D6F0FD /* Project object */;
@@ -34,9 +71,41 @@
 			remoteGlobalIDString = 22A7F4F61EB443B100D6F0FD;
 			remoteInfo = EmotionPlus;
 		};
+		22FDD52C1EB5959500FD5FA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F241D8110E600722320;
+			remoteInfo = Charts;
+		};
+		22FDD52E1EB5959500FD5FA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06165F2E1D8110E600722320;
+			remoteInfo = ChartsTests;
+		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		22FDD53A1EB5963100FD5FA4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				2278DE191EB6FDD100AD9472 /* Charts.framework in Embed Frameworks */,
+				2278DE171EB6FDBE00AD9472 /* SwiftyJSON.framework in Embed Frameworks */,
+				2278DE151EB6FDBE00AD9472 /* Alamofire.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2278DE121EB6FDBE00AD9472 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		22A7F4F71EB443B200D6F0FD /* EmotionPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmotionPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A7F4FA1EB443B200D6F0FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22A7F4FC1EB443B200D6F0FD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +122,34 @@
 		22A7F51E1EB443B200D6F0FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22A7F52A1EB4444600D6F0FD /* HomeKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeKitViewController.swift; sourceTree = "<group>"; };
 		22A7F52C1EB4447D00D6F0FD /* RecomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecomViewController.swift; sourceTree = "<group>"; };
+		22B51E0A1EB45826002EBE85 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		22B51E0C1EB45836002EBE85 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		22B51E0E1EB45842002EBE85 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		22B51E111EB458B5002EBE85 /* EmotionPlus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "EmotionPlus-Bridging-Header.h"; path = "EmotionPlus/EmotionPlus-Bridging-Header.h"; sourceTree = "<group>"; };
+		22FDD3F91EB5930F00FD5FA4 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/ChartsDemo-fjbkhlehfgazqyaxeonrddujlgqx/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
+		22FDD3FB1EB593A200FD5FA4 /* Charts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Charts.framework; path = "../../../../../../Library/Developer/Xcode/DerivedData/Charts-fsxtiowghpnfjmcohewwqwodgatw/Build/Products/Debug-iphonesimulator/Charts.framework"; sourceTree = "<group>"; };
+		22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../../../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
+		22FDD53B1EB5997C00FD5FA4 /* RadarChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadarChartViewController.xib; sourceTree = "<group>"; };
+		22FDD5421EB69A2700FD5FA4 /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
+		22FDD5431EB69A2700FD5FA4 /* RadarMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RadarMarkerView.swift; sourceTree = "<group>"; };
+		22FDD5441EB69A2700FD5FA4 /* RadarMarkerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RadarMarkerView.xib; sourceTree = "<group>"; };
+		22FDD5451EB69A2700FD5FA4 /* XYMarkerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYMarkerView.swift; sourceTree = "<group>"; };
+		22FDD54C1EB69A9A00FD5FA4 /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		22FDD54D1EB69A9A00FD5FA4 /* Icon-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@3x.png"; sourceTree = "<group>"; };
+		22FDD54E1EB69A9A00FD5FA4 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		22FDD54F1EB69A9A00FD5FA4 /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
+		22FDD5501EB69A9A00FD5FA4 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		22FDD5511EB69A9A00FD5FA4 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		22FDD5521EB69A9A00FD5FA4 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		22FDD5531EB69A9A00FD5FA4 /* iTunesArtwork@2x */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iTunesArtwork@2x"; sourceTree = "<group>"; };
+		22FDD5541EB69A9A00FD5FA4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		22FDD5561EB69A9A00FD5FA4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		22FDD5571EB69A9A00FD5FA4 /* Default-667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-667h@2x.png"; sourceTree = "<group>"; };
+		22FDD5581EB69A9A00FD5FA4 /* Default-736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-736h@3x.png"; sourceTree = "<group>"; };
+		22FDD5591EB69A9A00FD5FA4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		22FDD55B1EB69A9A00FD5FA4 /* radar_marker@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "radar_marker@3x.png"; sourceTree = "<group>"; };
+		22FDD56F1EB6A18B00FD5FA4 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HistoryTableViewCell.swift; path = ../HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		22FDD5711EB6A44B00FD5FA4 /* HistoryTableViewTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableViewTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +157,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B51E0F1EB45842002EBE85 /* CoreGraphics.framework in Frameworks */,
+				22B51E0D1EB45836002EBE85 /* UIKit.framework in Frameworks */,
+				22B51E0B1EB45826002EBE85 /* Foundation.framework in Frameworks */,
+				2278DE181EB6FDD100AD9472 /* Charts.framework in Frameworks */,
+				2278DE141EB6FDBE00AD9472 /* Alamofire.framework in Frameworks */,
+				2278DE161EB6FDBE00AD9472 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,10 +186,17 @@
 		22A7F4EE1EB443B100D6F0FD = {
 			isa = PBXGroup;
 			children = (
+				2278DE121EB6FDBE00AD9472 /* Alamofire.framework */,
+				2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */,
+				22B51E111EB458B5002EBE85 /* EmotionPlus-Bridging-Header.h */,
+				22FDD54A1EB69A9A00FD5FA4 /* Resources */,
+				22FDD5411EB69A2700FD5FA4 /* Components */,
+				22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */,
 				22A7F4F91EB443B200D6F0FD /* EmotionPlus */,
 				22A7F5101EB443B200D6F0FD /* EmotionPlusTests */,
 				22A7F51B1EB443B200D6F0FD /* EmotionPlusUITests */,
 				22A7F4F81EB443B200D6F0FD /* Products */,
+				22B51E091EB45826002EBE85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,6 +213,7 @@
 		22A7F4F91EB443B200D6F0FD /* EmotionPlus */ = {
 			isa = PBXGroup;
 			children = (
+				22FDD53B1EB5997C00FD5FA4 /* RadarChartViewController.xib */,
 				22A7F4FA1EB443B200D6F0FD /* AppDelegate.swift */,
 				22A7F4FC1EB443B200D6F0FD /* MainViewController.swift */,
 				22A7F4FE1EB443B200D6F0FD /* GameViewController.swift */,
@@ -112,6 +223,8 @@
 				22A7F5081EB443B200D6F0FD /* Info.plist */,
 				22A7F52A1EB4444600D6F0FD /* HomeKitViewController.swift */,
 				22A7F52C1EB4447D00D6F0FD /* RecomViewController.swift */,
+				22FDD5711EB6A44B00FD5FA4 /* HistoryTableViewTableViewController.swift */,
+				22FDD56F1EB6A18B00FD5FA4 /* HistoryTableViewCell.swift */,
 			);
 			path = EmotionPlus;
 			sourceTree = "<group>";
@@ -134,6 +247,83 @@
 			path = EmotionPlusUITests;
 			sourceTree = "<group>";
 		};
+		22B51E091EB45826002EBE85 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				22FDD3FB1EB593A200FD5FA4 /* Charts.framework */,
+				22FDD3F91EB5930F00FD5FA4 /* Charts.framework */,
+				22B51E0E1EB45842002EBE85 /* CoreGraphics.framework */,
+				22B51E0C1EB45836002EBE85 /* UIKit.framework */,
+				22B51E0A1EB45826002EBE85 /* Foundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		22FDD5281EB5959500FD5FA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22FDD52D1EB5959500FD5FA4 /* Charts.framework */,
+				22FDD52F1EB5959500FD5FA4 /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		22FDD5411EB69A2700FD5FA4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				22FDD5421EB69A2700FD5FA4 /* BalloonMarker.swift */,
+				22FDD5431EB69A2700FD5FA4 /* RadarMarkerView.swift */,
+				22FDD5441EB69A2700FD5FA4 /* RadarMarkerView.xib */,
+				22FDD5451EB69A2700FD5FA4 /* XYMarkerView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		22FDD54A1EB69A9A00FD5FA4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				22FDD54B1EB69A9A00FD5FA4 /* app-icon */,
+				22FDD5541EB69A9A00FD5FA4 /* Images.xcassets */,
+				22FDD5551EB69A9A00FD5FA4 /* launch-image */,
+				22FDD55A1EB69A9A00FD5FA4 /* markers */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		22FDD54B1EB69A9A00FD5FA4 /* app-icon */ = {
+			isa = PBXGroup;
+			children = (
+				22FDD54C1EB69A9A00FD5FA4 /* Icon-29@2x.png */,
+				22FDD54D1EB69A9A00FD5FA4 /* Icon-29@3x.png */,
+				22FDD54E1EB69A9A00FD5FA4 /* Icon-40@2x.png */,
+				22FDD54F1EB69A9A00FD5FA4 /* Icon-40@3x.png */,
+				22FDD5501EB69A9A00FD5FA4 /* Icon-60@2x.png */,
+				22FDD5511EB69A9A00FD5FA4 /* Icon-60@3x.png */,
+				22FDD5521EB69A9A00FD5FA4 /* iTunesArtwork */,
+				22FDD5531EB69A9A00FD5FA4 /* iTunesArtwork@2x */,
+			);
+			path = "app-icon";
+			sourceTree = "<group>";
+		};
+		22FDD5551EB69A9A00FD5FA4 /* launch-image */ = {
+			isa = PBXGroup;
+			children = (
+				22FDD5561EB69A9A00FD5FA4 /* Default-568h@2x.png */,
+				22FDD5571EB69A9A00FD5FA4 /* Default-667h@2x.png */,
+				22FDD5581EB69A9A00FD5FA4 /* Default-736h@3x.png */,
+				22FDD5591EB69A9A00FD5FA4 /* Default@2x.png */,
+			);
+			path = "launch-image";
+			sourceTree = "<group>";
+		};
+		22FDD55A1EB69A9A00FD5FA4 /* markers */ = {
+			isa = PBXGroup;
+			children = (
+				22FDD55B1EB69A9A00FD5FA4 /* radar_marker@3x.png */,
+			);
+			path = markers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -144,10 +334,12 @@
 				22A7F4F31EB443B100D6F0FD /* Sources */,
 				22A7F4F41EB443B100D6F0FD /* Frameworks */,
 				22A7F4F51EB443B100D6F0FD /* Resources */,
+				22FDD53A1EB5963100FD5FA4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				2278DE1B1EB6FDD100AD9472 /* PBXTargetDependency */,
 			);
 			name = EmotionPlus;
 			productName = EmotionPlus;
@@ -202,6 +394,7 @@
 				TargetAttributes = {
 					22A7F4F61EB443B100D6F0FD = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					22A7F50C1EB443B200D6F0FD = {
@@ -227,6 +420,12 @@
 			mainGroup = 22A7F4EE1EB443B100D6F0FD;
 			productRefGroup = 22A7F4F81EB443B200D6F0FD /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 22FDD5281EB5959500FD5FA4 /* Products */;
+					ProjectRef = 22FDD5271EB5959500FD5FA4 /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				22A7F4F61EB443B100D6F0FD /* EmotionPlus */,
@@ -236,14 +435,47 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		22FDD52D1EB5959500FD5FA4 /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 22FDD52C1EB5959500FD5FA4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		22FDD52F1EB5959500FD5FA4 /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 22FDD52E1EB5959500FD5FA4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		22A7F4F51EB443B100D6F0FD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22FDD53C1EB5997C00FD5FA4 /* RadarChartViewController.xib in Resources */,
+				22FDD5601EB69A9A00FD5FA4 /* Icon-60@2x.png in Resources */,
+				22FDD5631EB69A9A00FD5FA4 /* iTunesArtwork@2x in Resources */,
+				22FDD55D1EB69A9A00FD5FA4 /* Icon-29@3x.png in Resources */,
 				22A7F5071EB443B200D6F0FD /* LaunchScreen.storyboard in Resources */,
 				22A7F5041EB443B200D6F0FD /* Assets.xcassets in Resources */,
+				22FDD55F1EB69A9A00FD5FA4 /* Icon-40@3x.png in Resources */,
+				22FDD5481EB69A2700FD5FA4 /* RadarMarkerView.xib in Resources */,
+				22FDD5651EB69A9A00FD5FA4 /* Default-568h@2x.png in Resources */,
+				22FDD5621EB69A9A00FD5FA4 /* iTunesArtwork in Resources */,
+				22FDD5691EB69A9A00FD5FA4 /* radar_marker@3x.png in Resources */,
+				22FDD5641EB69A9A00FD5FA4 /* Images.xcassets in Resources */,
+				22FDD55E1EB69A9A00FD5FA4 /* Icon-40@2x.png in Resources */,
+				22FDD5681EB69A9A00FD5FA4 /* Default@2x.png in Resources */,
+				22FDD5671EB69A9A00FD5FA4 /* Default-736h@3x.png in Resources */,
+				22FDD55C1EB69A9A00FD5FA4 /* Icon-29@2x.png in Resources */,
+				22FDD5661EB69A9A00FD5FA4 /* Default-667h@2x.png in Resources */,
 				22A7F5021EB443B200D6F0FD /* Main.storyboard in Resources */,
+				22FDD5611EB69A9A00FD5FA4 /* Icon-60@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,9 +500,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22FDD5701EB6A18B00FD5FA4 /* HistoryTableViewCell.swift in Sources */,
 				22A7F4FF1EB443B200D6F0FD /* GameViewController.swift in Sources */,
+				22FDD5471EB69A2700FD5FA4 /* RadarMarkerView.swift in Sources */,
 				22A7F4FB1EB443B200D6F0FD /* AppDelegate.swift in Sources */,
+				22FDD5721EB6A44B00FD5FA4 /* HistoryTableViewTableViewController.swift in Sources */,
+				22FDD5491EB69A2700FD5FA4 /* XYMarkerView.swift in Sources */,
 				22A7F52B1EB4444600D6F0FD /* HomeKitViewController.swift in Sources */,
+				22FDD5461EB69A2700FD5FA4 /* BalloonMarker.swift in Sources */,
 				22A7F52D1EB4447D00D6F0FD /* RecomViewController.swift in Sources */,
 				22A7F4FD1EB443B200D6F0FD /* MainViewController.swift in Sources */,
 			);
@@ -295,6 +532,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		2278DE1B1EB6FDD100AD9472 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Charts;
+			targetProxy = 2278DE1A1EB6FDD100AD9472 /* PBXContainerItemProxy */;
+		};
 		22A7F50F1EB443B200D6F0FD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 22A7F4F61EB443B100D6F0FD /* EmotionPlus */;
@@ -421,11 +663,22 @@
 		22A7F5221EB443B200D6F0FD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_ACTIVITY_MODE = "";
+				"DEBUG_ACTIVITY_MODE[sdk=iphonesimulator*]" = disable;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = EmotionPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iot17steam5.EmotionPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EmotionPlus/EmotionPlus-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -433,11 +686,20 @@
 		22A7F5231EB443B200D6F0FD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEBUG_ACTIVITY_MODE = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = EmotionPlus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iot17steam5.EmotionPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EmotionPlus/EmotionPlus-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
