@@ -31,7 +31,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import cz.msebera.android.httpclient.HttpEntity;
 import cz.msebera.android.httpclient.client.HttpClient;
@@ -39,14 +38,13 @@ import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.entity.BufferedHttpEntity;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
-//import cz.msebera.android.httpclient.HttpResponse;
-
 /**
  * @author jialingliu
  */
 
 public class RecommendationActivity extends AppCompatActivity {
     private static final int cnt = 6;
+    private static final int cnt2 = 4;
     private TextView restaurantText;
     private TextView sportsText;
 
@@ -59,6 +57,8 @@ public class RecommendationActivity extends AppCompatActivity {
 
     private ImageView s1;
     private ImageView s2;
+    private ImageView s3;
+    private ImageView s4;
 
     private TextView txt1;
     private TextView txt2;
@@ -69,17 +69,18 @@ public class RecommendationActivity extends AppCompatActivity {
 
     private TextView txt7;
     private TextView txt8;
-
+    private TextView txt9;
+    private TextView txt10;
 
     private String[] mActivities = new String[]{"anger", "contempt", "disgust", "fear", "happiness", "neutral", "sadness", "surprise"};
 
     private String head = "http://";
-
+    Typeface face;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
-
+        face = Typeface.createFromAsset(getAssets(), "fonts/DancingScript-Bold.ttf");
         initTextViews();
 
         DisplayImgTask task = new DisplayImgTask();
@@ -87,7 +88,7 @@ public class RecommendationActivity extends AppCompatActivity {
     }
 
     private void initTextViews() {
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/DancingScript-Regular.ttf");
+
 
         restaurantText = (TextView) findViewById(R.id.restauranttext);
         sportsText = (TextView) findViewById(R.id.sportstext);
@@ -101,15 +102,15 @@ public class RecommendationActivity extends AppCompatActivity {
         List<Map<String, String>> sports = recommendations.get("sports");
 
         ImageView[] ivr = new ImageView[] {r1, r2, r3, r4, r5, r6};
-        ImageView[] ivs = new ImageView[] {s1, s2};
+        ImageView[] ivs = new ImageView[] {s1, s2, s3, s4};
         int[] idsr = new int[] {R.id.img1, R.id.img2, R.id.img3, R.id.img4, R.id.img5, R.id.img6,
-                R.id.txt1, R.id.txt2, R.id.txt2, R.id.txt2, R.id.txt2, R.id.txt2};
-        int[] idss = new int[] {R.id.img7, R.id.img8};
+                R.id.txt1, R.id.txt2, R.id.txt3, R.id.txt4, R.id.txt5, R.id.txt6};
+        int[] idss = new int[] {R.id.img7, R.id.img8, R.id.img9, R.id.img10, R.id.txt7, R.id.txt8, R.id.txt9, R.id.txt10};
 
         TextView[] txtr = new TextView[] {txt1, txt2, txt3, txt4, txt5, txt6};
-        TextView[] txts = new TextView[] {txt7, txt8};
+        TextView[] txts = new TextView[] {txt7, txt8, txt9, txt10};
 
-        // TODO: 4/30/17 display 6 + 6 images
+        // TODO: 4/30/17 display 6 + 4 images
         // restaurants
         for (int i = 0; i < cnt; i++) {
             final Map<String, String> restaurant = restaurants.get(i);
@@ -123,12 +124,21 @@ public class RecommendationActivity extends AppCompatActivity {
                 }
             });
 
-            txtr = (TextView) findViewById()
+            txtr[i] = (TextView) findViewById(idsr[i + cnt]);
+            txtr[i].setText(restaurant.get("name"));
+            txtr[i].setTypeface(face);
         }
 
         // sports
-        for (int i = 0; i < cnt; i++) {
-            // TODO: 4/30/17
+        for (int i = 0; i < cnt2; i++) {
+            final Map<String, String> sport = sports.get(i);
+            ivs[i] = (ImageView) findViewById(idss[i]);
+
+            new DownloadImageTask(ivs[i]).execute(head + sport.get("img"));
+
+            txts[i] = (TextView) findViewById(idss[i + cnt2]);
+            txts[i].setText(sport.get("name"));
+            txts[i].setTypeface(face);
         }
     }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
