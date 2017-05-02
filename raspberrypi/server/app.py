@@ -42,8 +42,8 @@ def loop_capture():
 def start_loop():
 	print "start looping..."
 	global loop_subprocess
-	# p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/looping.sh'])
-	# p.wait()
+	p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/looping.sh'])
+	p.wait()
 
 	# loop_subprocess = Process(target=loop_capture)
 	# loop_subprocess.daemon = True
@@ -154,14 +154,7 @@ def start_motion():
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
 	time.sleep(10) # wait for starting...
-	# while True:
-	# 	try:
-	# 		r = requests.get("http://" + conf['pi_ip'] + ":8080")
-	# 		r.raise_for_status()
-	# 		break
-	# 	except Exception as e:
-	# 		time.sleep(0.5)
-	# 		continue
+
 
 def stop_motion():
 	print "stop motion..."
