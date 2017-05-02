@@ -135,8 +135,6 @@ def captureinstream():
 	except Exception as e:
 		print str(e)
 		return str(e), 500
-	finally:
-		stop_motion()
 	
 
 @app.route("/lastsnp")
