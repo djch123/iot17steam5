@@ -122,6 +122,8 @@ def captureinstream():
 
 		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 		# image = open(conf["stream_snap_path"])
+		os.system("mv " + conf['stream_snap_path'] + " " + os.path.dirname(__file__) +  "/image.jpg")
+
 		image = open(conf["image_path"])
 		
 		data = image.read()
@@ -130,7 +132,6 @@ def captureinstream():
 				data=data,
 				headers={'Content-Type': 'application/octet-stream'})
 		
-		os.system("mv " + conf['stream_snap_path'] + " " + os.path.dirname(__file__) +  "/image.jpg")
 
 		res.raise_for_status()
 
