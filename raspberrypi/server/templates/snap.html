@@ -8,7 +8,9 @@
 <!-- <img src="{{ url_for('static', filename='image.jpg') }}"/> -->
 <img src="/{{static_image_path}}" class="img-responsive center-block"/>
 <div class="container center-block">
+	{% if data is defined %}
 	<div>
+
 		<table class="table table-condensed">
 			<thead>
 		      <tr>
@@ -27,9 +29,12 @@
 		</table>
 
 	<div/>
+	{% endif %}
+	{% if error is defined %}
 	<div class="well span6 row">
 		<p class="text-danger"> {{error}} <p/>
 	</div>
+	{% endif %}
 </div>
 </body>
 </html>
