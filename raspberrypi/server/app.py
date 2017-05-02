@@ -48,7 +48,7 @@ setup()
 
 def capture_helper():
 	stop_motion()
-	
+
 	image_path = conf['image_path']
 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 	print anaylze_url
@@ -95,6 +95,8 @@ def getWeeklyEmotion():
 
 @app.route("/stream")
 def stream():
+	stop_motion()
+	start_motion()
 	return render_template('stream.html', ip = conf['pi_ip']) 
 
 def start_motion():
@@ -105,8 +107,6 @@ def stop_motion():
 
 @app.route("/captureinstream")
 def captureinstream():
-	stop_motion()
-	start_motion()
 	try:
 		r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
 		time.sleep(5)
@@ -135,8 +135,6 @@ def captureinstream():
 	except Exception as e:
 		print str(e)
 		return str(e), 500
-	finally:
-		stop_motion()
 	
 
 @app.route("/lastsnp")
