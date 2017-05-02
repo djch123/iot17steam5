@@ -121,7 +121,6 @@ def capture_helper(image_path=conf['image_path']):
 @app.route('/takeaphoto')
 def takeaphoto():
 	try:
-		stop_motion()
 		capture_helper()
 		global weekly_emotion, cur_emotion
 		max_emotion_type = max(cur_emotion, key=lambda k: cur_emotion[k])
@@ -177,7 +176,7 @@ def stop_motion():
 			print e
 			time.sleep(0.5)
 	
-	start_loop()
+	
 
 def nocache(view):
     @wraps(view)
@@ -211,6 +210,8 @@ def captureinstream():
 		print 'type is:', e.__class__.__name__
 		print str(e)
 		return str(e), 500
+	finally:
+		start_loop()
 		
 
 
