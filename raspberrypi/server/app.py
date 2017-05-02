@@ -1,4 +1,4 @@
-from flask import Flask, url_for, jsonify
+from flask import Flask, url_for, jsonify, Response, render_template
 import config
 import json
 from capture import capture
@@ -22,13 +22,13 @@ def setup():
 	for i in range(0, 6):
 		weekly_emotion['data'].append({
 				"anger": randint(0,20),
-	      		"contempt": randint(0,20),
-	      		"disgust": randint(0,20),
-	      		"fear": randint(0,20),
+	      		"contempt": randint(0,5),
+	      		"disgust": randint(0,5),
+	      		"fear": randint(0,10),
 	      		"happiness": randint(0,20),
-	      		"neutral": randint(0,20),
-	      		"sadness": randint(0,20),
-	      		"surprise": randint(0,20)
+	      		"neutral": randint(0,30),
+	      		"sadness": randint(0,10),
+	      		"surprise": randint(0,5)
 			})
 	#today's data
 	weekly_emotion['data'].append({
@@ -91,7 +91,13 @@ def getWeeklyEmotion():
 	global weekly_emotion
 	return json.dumps(weekly_emotion), 200
 
+@app.route("/stream")
+def stream():
+	return render_template('stream.html') 
 
+@app.route("/captureinstream")
+def captureinstream():
+	return 1;
 
 
 if __name__ == '__main__':
