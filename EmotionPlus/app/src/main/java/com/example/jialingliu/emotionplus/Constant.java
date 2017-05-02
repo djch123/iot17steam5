@@ -5,6 +5,6 @@ package com.example.jialingliu.emotionplus;
  */
 
 class Constant {
-    static String PI_IP = "";
-    static String RECOMMENDATION_IP = "";
+    static String PI_IP = "172.29.92.105";
+    static String RECOMMENDATION_IP = "172.29.93.218";
 }
