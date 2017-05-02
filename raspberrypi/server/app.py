@@ -7,6 +7,8 @@ from random import randint
 import os, time
 import subprocess
 import picamera, binascii
+from multiprocessing import Process
+
 
 
 from flask import make_response
@@ -24,6 +26,27 @@ global cur_emotion
 cur_emotion = conf['default_emotion']
 
 global weekly_emotion
+
+def loop_capture():
+	url = "http://localhost:8888/takeaphoto"
+
+	while True:
+		try:
+			time.sleep(int(conf["anaylze_duration"]))
+			r=requests.get(url)
+			print r
+		except Exception as e:
+			print str(e)
+
+def start_loop():
+	global loop_subprocess
+	loop_subprocess = Process(target=loop_capture, daemon=True)
+	loop_subprocess.start()
+
+def stop_loop():
+	global loop_subprocess
+	loop_subprocess.terminate()
+
 def setup():
 	os.system("rm *.jpg")
 	global weekly_emotion
@@ -50,6 +73,10 @@ def setup():
 	      		"sadness": 0,
 	      		"surprise": 0
 			})
+	start_loop()
+
+
+
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
@@ -109,7 +136,7 @@ def stream():
 	return render_template('stream.html', ip = conf['pi_ip']) 
 
 def start_motion():
-	
+	stop_loop()
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
 	time.sleep(10) # wait for starting...
@@ -133,7 +160,8 @@ def stop_motion():
 		except picamera.PiCameraMMALError as e:
 			print e
 			time.sleep(0.5)
-			
+	
+	start_loop()
 
 @app.route("/test")
 def test():
