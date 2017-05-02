@@ -39,16 +39,21 @@ def loop_capture():
 			print str(e)
 
 def start_loop():
+	print "start looping..."
 	global loop_subprocess
-	
+
+
 	loop_subprocess = Process(target=loop_capture)
 	loop_subprocess.daemon = True
 	loop_subprocess.start()
 
 def stop_loop():
+	print "stop looping..."
+
 	global loop_subprocess
-	loop_subprocess.terminate()
-	loop_subprocess = None
+	if loop_subprocess is not None:
+		loop_subprocess.terminate()
+		loop_subprocess = None
 
 def setup():
 	os.system("rm *.jpg")
@@ -139,6 +144,7 @@ def stream():
 	return render_template('stream.html', ip = conf['pi_ip']) 
 
 def start_motion():
+	print "start motion..."
 	stop_loop()
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
@@ -153,6 +159,7 @@ def start_motion():
 	# 		continue
 
 def stop_motion():
+	print "stop motion..."
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
 	p.wait()
 	# make sure that the resource has been released
