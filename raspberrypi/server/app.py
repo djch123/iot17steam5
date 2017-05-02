@@ -110,7 +110,7 @@ def start_motion():
 def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
 	p.wait()
-	
+
 
 
 @app.route("/captureinstream")
@@ -126,7 +126,9 @@ def captureinstream():
 
 		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 		# image = open(conf["stream_snap_path"])
-		os.system("mv " + conf['stream_snap_path'] + " " + os.path.dirname(__file__) +  "/image.jpg")
+		p = subprocess.Popen(['mv', conf['stream_snap_path'], os.path.dirname(__file__) + "/image.jpg"])
+		p.wait()
+		
 
 		image = open(conf["image_path"])
 		
