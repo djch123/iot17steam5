@@ -5,7 +5,7 @@ if [ ! -f "pid" ]
 then
     
     python looping.py  >>/home/pi/yuhao/looping.log 2>>/home/pi/yuhao/looping.log &
-    echo $! > deploy/pid
+    echo $! > pid
 fi
 
 
