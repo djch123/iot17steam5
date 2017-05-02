@@ -1,8 +1,8 @@
 {  
    "image_path": "./image.jpg",
-   "pi_ip": "10.0.0.25",
+   "pi_ip": "172.29.92.105",
    "pi_port": "8888",
-   "anaylze_ip": "10.0.0.245",
+   "anaylze_ip": "172.29.93.218",
    "anaylze_port": "3000",
    "anaylze_duration":10,
    "stream_snap_path":"/var/lib/motion/lastsnap.jpg",
