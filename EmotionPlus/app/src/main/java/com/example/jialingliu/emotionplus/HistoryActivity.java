@@ -365,8 +365,8 @@ public class HistoryActivity extends BaseActivity {
         List<Map<String, Integer>>  getEmotionData() {
             List<Map<String, Integer>> result;
             try {
-                Document document = Jsoup.connect(BASE_URL).timeout(1000).get();
-                result = processJson(document.toString());
+                Document document = Jsoup.connect(BASE_URL).timeout(3000).get();
+                result = processJson(document.body().text());
                 return result;
             } catch(Throwable t) {
                 t.printStackTrace();
