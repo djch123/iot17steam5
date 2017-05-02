@@ -90,7 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Rock With You"
+                android:text="Waiting..."
                 android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
@@ -102,7 +102,7 @@
                 android:layout_below="@+id/textViewSong"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Michael Jackson"
+                android:text="Waiting..."
                 android:textColor="@android:color/darker_gray"
                 android:textSize="15sp" />
 
