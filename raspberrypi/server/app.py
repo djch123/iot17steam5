@@ -87,7 +87,7 @@ def takeaphoto():
 		today_emotion = weekly_emotion['data'][6]
 		if max_emotion_type in today_emotion: today_emotion[max_emotion_type] += 1
 		
-		return "OK", 200
+		return json.dumps(cur_emotion), 200
 	except Exception as e:
 		print str(e)
 		return str(e), 500
@@ -112,7 +112,7 @@ def start_motion():
 	
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
-	time.sleep(10)
+	time.sleep(10) # wait for starting...
 	# while True:
 	# 	try:
 	# 		r = requests.get("http://" + conf['pi_ip'] + ":8080")
@@ -125,6 +125,7 @@ def start_motion():
 def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
 	p.wait()
+	# make sure that the resource has been released
 	while True:
 		try:
 			capture(conf['image_path'])
