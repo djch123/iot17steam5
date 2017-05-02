@@ -68,6 +68,8 @@ def capture_helper():
 		cur_emotion = j
 	
 
+	
+
 @app.route('/takeaphoto')
 def takeaphoto():
 	try:
@@ -107,34 +109,47 @@ def stop_motion():
 
 @app.route("/captureinstream")
 def captureinstream():
-	try:
-		r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
-		time.sleep(5)
-		r.raise_for_status()
-	except Exception as e:
-		print str(e)
-		return str(e), 500
+	# try:
+	# 	r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
+	# 	time.sleep(5)
+	# 	r.raise_for_status()
+	# except Exception as e:
+	# 	print str(e)
+	# 	return str(e), 500
 
-	try:
+	# try:
 
-		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
-		image = open(conf["stream_snap_path"])
-		data = image.read()
-		image.close()
-		res = requests.post(url=anaylze_url,
-				data=data,
-				headers={'Content-Type': 'application/octet-stream'})
+	# 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
+	# 	image = open(conf["stream_snap_path"])
+	# 	data = image.read()
+	# 	image.close()
+	# 	res = requests.post(url=anaylze_url,
+	# 			data=data,
+	# 			headers={'Content-Type': 'application/octet-stream'})
 		
-		res.raise_for_status()
+	# 	res.raise_for_status()
 
-		j = res.json()
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
-	except requests.exceptions.HTTPError as e:
-		print str(e)
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
+	# 	j = res.json()
+	# 	return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
+	# except requests.exceptions.HTTPError as e:
+	# 	print str(e)
+	# 	return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
+	# except Exception as e:
+	# 	print str(e)
+	# 	return str(e), 500
+
+
+	
+	try:
+		time.sleep(10)
+		capture_helper()
+		
+		return json.dumps(cur_emotion), 200
 	except Exception as e:
 		print str(e)
 		return str(e), 500
+
+
 	
 
 @app.route("/lastsnp")
