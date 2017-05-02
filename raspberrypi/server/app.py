@@ -122,7 +122,7 @@ def stop_motion():
 	p.wait()
 	while True:
 		try:
-			capture_helper()
+			capture(conf['image_path'])
 			break
 		except picamera.PiCameraMMALError as e:
 			print e
@@ -183,6 +183,7 @@ def captureinstream():
 
 
 		# time.sleep(10)
+		os.system("rm image.jpg")
 		capture_helper()
 		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
 
