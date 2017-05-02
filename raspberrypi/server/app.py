@@ -106,6 +106,11 @@ def start_motion():
 	
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
+	while True:
+		r = requests.get("http://" + conf['pi_ip'] + ":8080")
+		if r.status_code == 200: break
+		else: time.sleep(0.5)
+
 
 def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
@@ -115,59 +120,59 @@ def stop_motion():
 
 @app.route("/captureinstream")
 def captureinstream():
-	try:
-		r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
-		r.raise_for_status()
-	except Exception as e:
-		print str(e)
-		return str(e), 500
-
-	try:
-
-		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
-		# image = open(conf["stream_snap_path"]) 
-		cmd = "cp " + conf['stream_snap_path'] + " " + os.path.join(APP_ROOT, "image.jpg")
-		print cmd
-		# os.system(cmd)
-		p = subprocess.Popen(cmd.split(), stdout = subprocess.PIPE,stderr = subprocess.STDOUT)
-		p.wait()
-
-
-		image = open(conf["image_path"])
-		
-		data = image.read()
-		image.close()
-		res = requests.post(url=anaylze_url,
-				data=data,
-				headers={'Content-Type': 'application/octet-stream'})
-		
-
-		res.raise_for_status()
-
-
-		j = res.json()
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
-	except requests.exceptions.HTTPError as e:
-		print str(e)
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
-	except Exception as e:
-		print str(e)
-		return str(e), 500
-
-
-	
 	# try:
-	# 	stop_motion()
+	# 	r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
+	# 	r.raise_for_status()
+	# except Exception as e:
+	# 	print str(e)
+	# 	return str(e), 500
 
-	# 	time.sleep(10)
-	# 	capture_helper()
-	# 	return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
+	# try:
+
+	# 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
+	# 	# image = open(conf["stream_snap_path"]) 
+	# 	cmd = "cp " + conf['stream_snap_path'] + " " + os.path.join(APP_ROOT, "image.jpg")
+	# 	print cmd
+	# 	# os.system(cmd)
+	# 	p = subprocess.Popen(cmd.split(), stdout = subprocess.PIPE,stderr = subprocess.STDOUT)
+	# 	p.wait()
+
+
+	# 	image = open(conf["image_path"])
+		
+	# 	data = image.read()
+	# 	image.close()
+	# 	res = requests.post(url=anaylze_url,
+	# 			data=data,
+	# 			headers={'Content-Type': 'application/octet-stream'})
+		
+
+	# 	res.raise_for_status()
+
+
+	# 	j = res.json()
+	# 	return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
 	# except requests.exceptions.HTTPError as e:
 	# 	print str(e)
 	# 	return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
 	# except Exception as e:
 	# 	print str(e)
 	# 	return str(e), 500
+
+
+	
+	try:
+		stop_motion()
+
+		time.sleep(10)
+		capture_helper()
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
+	except requests.exceptions.HTTPError as e:
+		print str(e)
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
+	except Exception as e:
+		print str(e)
+		return str(e), 500
 		
 
 
