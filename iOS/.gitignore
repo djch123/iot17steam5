@@ -2,6 +2,10 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+#cathage
+EmotionPlus/Carthage/
+EmotionPlus/Cartfile.resolved
+
 ## Build generated
 build/
 DerivedData/
