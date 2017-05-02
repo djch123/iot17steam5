@@ -40,10 +40,10 @@ def loop_capture():
 
 def start_loop():
 	global loop_subprocess
-	if loop_subprocess is not None:
-		loop_subprocess = Process(target=loop_capture)
-		loop_subprocess.daemon = True
-		loop_subprocess.start()
+	
+	loop_subprocess = Process(target=loop_capture)
+	loop_subprocess.daemon = True
+	loop_subprocess.start()
 
 def stop_loop():
 	global loop_subprocess
