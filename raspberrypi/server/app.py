@@ -6,6 +6,7 @@ import requests
 from random import randint
 import os, time
 import subprocess
+import picamera
 
 
 app = Flask(__name__, static_url_path="", static_folder="./")
