@@ -50,7 +50,6 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
 
 def capture_helper():
-	stop_motion()
 
 	image_path = conf['image_path']
 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
@@ -76,6 +75,7 @@ def capture_helper():
 @app.route('/takeaphoto')
 def takeaphoto():
 	try:
+		stop_motion()
 		capture_helper()
 		global weekly_emotion, cur_emotion
 		max_emotion_type = max(cur_emotion, key=lambda k: cur_emotion[k])
