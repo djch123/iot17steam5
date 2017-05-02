@@ -42,8 +42,8 @@ def loop_capture():
 def start_loop():
 	print "start looping..."
 	global loop_subprocess
-	p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/looping.sh'])
-	p.wait()
+	# p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/looping.sh'])
+	# p.wait()
 
 	# loop_subprocess = Process(target=loop_capture)
 	# loop_subprocess.daemon = True
@@ -99,7 +99,6 @@ def capture_helper(image_path=conf['image_path']):
 
 	
 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
-	print anaylze_url
 	capture(image_path)
 	image = open(image_path)
 	data = image.read()
