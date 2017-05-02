@@ -16,6 +16,7 @@ url = "http://localhost:8888/takeaphoto"
 
 while True:
 	try:
+		print "looping once..."
 		time.sleep(int(conf["anaylze_duration"]))
 		r=requests.get(url)
 		print r
