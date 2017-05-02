@@ -1,7 +1,7 @@
 #!/bin/sh
 cd `dirname $0`
 rm -f pid
-n=`sudo ps -ef | grep looping.py`
+n=`sudo ps -ef | grep looping.py | wc -l`
 if [ $n -eq 1 ]
 then
 	exit
