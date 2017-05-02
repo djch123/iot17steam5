@@ -116,7 +116,11 @@ def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
 	p.wait()
 
-
+@app.route("/test")
+def test():
+	p = subprocess.Popen(['sudo', 'motion', '-m'])
+	p.wait()
+	return str(requests.get("http://" + conf['pi_ip'] + ":8080"))
 
 @app.route("/captureinstream")
 def captureinstream():
