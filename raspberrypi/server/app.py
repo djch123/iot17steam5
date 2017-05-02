@@ -119,6 +119,14 @@ def start_motion():
 def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
 	p.wait()
+	while True:
+		try:
+			capture_helper()
+			break
+		except picamera.PiCameraMMALError as e:
+			print e
+			time.sleep(0.5)
+			
 
 @app.route("/test")
 def test():
@@ -176,6 +184,7 @@ def captureinstream():
 		# time.sleep(10)
 		capture_helper()
 		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
+
 	except requests.exceptions.HTTPError as e:
 		print str(e)
 		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
