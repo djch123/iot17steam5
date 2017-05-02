@@ -126,9 +126,12 @@ def captureinstream():
 	try:
 
 		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
-		# image = open(conf["stream_snap_path"])
-		p = subprocess.Popen(['cp', conf['stream_snap_path'], os.path.join(APP_ROOT, 'image_path')], stdout = subprocess.STDOUT,stderr = subprocess.STDOUT)
-		p.wait()
+		# image = open(conf["stream_snap_path"]) 
+		cmd = "cp " + conf['stream_snap_path'] + " " + os.path.join(APP_ROOT, "image.jpg")
+		print cmd
+		os.system(cmd)
+		# p = subprocess.Popen(['cp', conf['stream_snap_path'], os.path.join(APP_ROOT, 'image_path')], stdout = subprocess.STDOUT,stderr = subprocess.STDOUT)
+		# p.wait()
 
 
 		image = open(conf["image_path"])
