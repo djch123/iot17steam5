@@ -53,9 +53,9 @@ def setup():
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
 
-def capture_helper():
+def capture_helper(image_path=conf['image_path']):
 
-	image_path = conf['image_path']
+	
 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 	print anaylze_url
 	capture(image_path)
@@ -204,12 +204,13 @@ def captureinstream():
 
 		# time.sleep(10)
 		if os.path.isfile(conf['image_path']): os.remove(conf['image_path'])
-		capture_helper()
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
+		image_name = "image_"+ str(binascii.b2a_hex(os.urandom(10))) + ".jpg"
+		capture_helper(image_path=image_name)
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion), static_image_path=image_name)
 
 	except requests.exceptions.HTTPError as e:
 		print str(e)
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)", static_image_path=image_name)
 	except Exception as e:
 		print 'type is:', e.__class__.__name__
 		print str(e)
