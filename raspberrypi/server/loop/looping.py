@@ -7,7 +7,7 @@ import time
 import requests
 
 
-fi = open('config.json', 'r')
+fi = open('../config.json', 'r')
 config.conf = json.loads(fi.read())
 conf = config.conf
 fi.close()
