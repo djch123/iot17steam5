@@ -34,6 +34,7 @@ def loop_capture():
 		try:
 			time.sleep(int(conf["anaylze_duration"]))
 			r=requests.get(url)
+			print "capture in looping......"
 			print r
 		except Exception as e:
 			print str(e)
@@ -41,19 +42,24 @@ def loop_capture():
 def start_loop():
 	print "start looping..."
 	global loop_subprocess
+	p = subprocess.Popen(['sudo', 'bash', 'loop/looping.sh'])
+	p.wait()
 
-
-	loop_subprocess = Process(target=loop_capture)
-	loop_subprocess.daemon = True
-	loop_subprocess.start()
+	# loop_subprocess = Process(target=loop_capture)
+	# loop_subprocess.daemon = True
+	# loop_subprocess.start()
 
 def stop_loop():
 	print "stop looping..."
 
 	global loop_subprocess
-	if loop_subprocess is not None:
-		loop_subprocess.terminate()
-		loop_subprocess = None
+
+	p = subprocess.Popen(['sudo', 'bash', 'loop/stop.sh'])
+	p.wait()
+
+	# if loop_subprocess is not None:
+	# 	loop_subprocess.terminate()
+	# 	loop_subprocess = None
 
 def setup():
 	os.system("rm *.jpg")
