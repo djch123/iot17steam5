@@ -97,7 +97,7 @@ def stream():
 @app.route("/captureinstream")
 def captureinstream():
 	try:
-		r = requests.get("http:" + conf['pi_ip'] + ":8080/0/action/snapshot")
+		r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
 		r.raise_for_status()
 	except Exception as e:
 		print str(e)
@@ -111,10 +111,14 @@ def captureinstream():
 		res = requests.post(url=anaylze_url,
 				data=data,
 				headers={'Content-Type': 'application/octet-stream'})
+		
 		res.raise_for_status()
+
 		j = res.json()
 		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
-
+	except requests.exceptions.HTTPError as e:
+		print str(e)
+		print "Can't find a face:)", 404
 	except Exception as e:
 		print str(e)
 		return str(e), 500
