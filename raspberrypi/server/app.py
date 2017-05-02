@@ -95,9 +95,7 @@ def setup():
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
 
-def capture_helper(image_path):
-	if image_path is None:
-		image_path = conf['image_path']
+def capture_helper(image_path="./image.jpg"):
 	
 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 	capture(image_path)
