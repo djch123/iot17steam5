@@ -106,14 +106,15 @@ def start_motion():
 	
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
-	while True:
-		try:
-			r = requests.get("http://" + conf['pi_ip'] + ":8080")
-			r.raise_for_status()
-			break
-		except Exception as e:
-			time.sleep(0.5)
-			continue
+	time.sleep(10)
+	# while True:
+	# 	try:
+	# 		r = requests.get("http://" + conf['pi_ip'] + ":8080")
+	# 		r.raise_for_status()
+	# 		break
+	# 	except Exception as e:
+	# 		time.sleep(0.5)
+	# 		continue
 
 def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
@@ -171,7 +172,7 @@ def captureinstream():
 	try:
 		stop_motion()
 
-		time.sleep(10)
+		# time.sleep(10)
 		capture_helper()
 		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
 	except requests.exceptions.HTTPError as e:
