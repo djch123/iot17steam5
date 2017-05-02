@@ -1,9 +1,11 @@
 package com.example.jialingliu.emotionplus;
 
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -153,6 +155,29 @@ public class HomekitActivity extends AppCompatActivity {
         }, delay);
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        PHBridge connectedBridge = phHueSDK.getSelectedBridge();
+
+        if (connectedBridge != null) {
+            String connectedIP = connectedBridge.getResourceCache().getBridgeConfiguration().getIpAddress();
+            if (connectedIP != null) {   // We are already connected here:-
+                phHueSDK.disableHeartbeat(connectedBridge);
+                phHueSDK.disconnect(connectedBridge);
+            }
+        }
+
+        Intent intent = new Intent(getApplicationContext(),
+                MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            intent.addFlags(0x8000);
+        startActivity(intent);
+
+    }
     public void getEmotion() throws JSONException{
         //stopThread();
         HttpUtils.get("http://172.29.92.105:8888/emotion", null, new JsonHttpResponseHandler() {
