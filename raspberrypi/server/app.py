@@ -118,7 +118,7 @@ def captureinstream():
 		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
 	except requests.exceptions.HTTPError as e:
 		print str(e)
-		return "Can't find a face:)", 404
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
 	except Exception as e:
 		print str(e)
 		return str(e), 500
