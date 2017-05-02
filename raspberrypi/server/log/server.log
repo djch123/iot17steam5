@@ -1,0 +1,177 @@
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 207-754-227
+172.29.94.95 - - [01/May/2017 05:24:31] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:24:54] "GET /emotion HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 207-754-227
+172.29.92.250 - - [01/May/2017 05:27:02] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:27:14] "GET /emotion HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 207-754-227
+172.29.94.95 - - [01/May/2017 05:32:07] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:32:07] "GET /emotion HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 207-754-227
+172.29.94.95 - - [01/May/2017 05:32:54] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:32:55] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 05:32:57] "GET /emotion HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 195-758-835
+Traceback (most recent call last):
+  File "app.py", line 98, in <module>
+    app.run(host="0.0.0.0", port=8888, debug=True, threaded=True)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/serving.py", line 717, in run_simple
+    s.bind((hostname, port))
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+172.29.94.95 - - [01/May/2017 05:34:33] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:34:34] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:34:44] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.94.95 - - [01/May/2017 05:34:47] "GET /emotion/week HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:34:51] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 05:35:29] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:35:36] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:35:36] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:35:37] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:35:39] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:35:40] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:35:41] "GET /emotion/week HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 889-578-321
+Traceback (most recent call last):
+  File "app.py", line 98, in <module>
+    app.run(host="0.0.0.0", port=8888, debug=True, threaded=True)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/serving.py", line 717, in run_simple
+    s.bind((hostname, port))
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+172.29.94.95 - - [01/May/2017 05:37:28] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:37:38] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.94.95 - - [01/May/2017 05:37:54] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:37:58] "GET /emotion/week HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:38:19] "GET /emotion/week HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:38:26] "GET /takeaphoto HTTP/1.1" 200 -
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 207-754-227
+172.29.94.95 - - [01/May/2017 05:40:19] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:40:22] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:40:27] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:40:32] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:40:46] "GET /emotion/week HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:41:22] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:41:27] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:41:42] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:41:45] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:41:47] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:47:34] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:48:13] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:49:02] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 05:49:04] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 05:49:13] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:49:15] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:50:54] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:51:28] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:52:44] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:53:42] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:59:04] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 05:59:57] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 06:00:45] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 06:01:59] "GET /emotion HTTP/1.1" 200 -
+172.29.92.162 - - [01/May/2017 06:03:38] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:05:47] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:05:57] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:06:07] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:06:17] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:06:27] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:06:35] "GET /emotion/week HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:06:37] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:06:47] "GET /emotion HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "app.py", line 98, in <module>
+    app.run(host="0.0.0.0", port=8888, debug=True, threaded=True)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/serving.py", line 717, in run_simple
+    s.bind((hostname, port))
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use
+172.29.92.250 - - [01/May/2017 06:06:57] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:07:05] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:07:07] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:07:08] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:07:09] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:07:09] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:07:18] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:07:18] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.94.95 - - [01/May/2017 06:07:25] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:07:25] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:07:28] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:07:31] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:07:37] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:07:42] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:07:42] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.94.95 - - [01/May/2017 06:07:42] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:07:48] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:07:54] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:07:58] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:07:58] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:08:05] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:08:08] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:08:17] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:08:18] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:08:22] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:08:28] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:08:29] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:08:38] "GET /emotion HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:08:40] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:08:40] "GET /takeaphoto HTTP/1.1" 200 -
+172.29.94.95 - - [01/May/2017 06:08:41] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:08:48] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:08:52] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:08:58] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:09:04] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:09:08] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:09:16] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:09:18] "GET /emotion HTTP/1.1" 200 -
+172.29.92.250 - - [01/May/2017 06:09:28] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:09:30] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:09:38] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:09:41] "GET /takeaphoto HTTP/1.1" 500 -
+172.29.92.250 - - [01/May/2017 06:09:48] "GET /emotion HTTP/1.1" 200 -
+127.0.0.1 - - [01/May/2017 06:09:53] "GET /takeaphoto HTTP/1.1" 500 -
+ * Running on http://0.0.0.0:8888/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 207-754-227
+172.29.94.95 - - [02/May/2017 02:19:29] "GET /emotion HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "app.py", line 98, in <module>
+    app.run(host="0.0.0.0", port=8888, debug=True, threaded=True)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 841, in run
+    run_simple(host, port, self, **options)
+  File "/usr/local/lib/python2.7/dist-packages/werkzeug/serving.py", line 717, in run_simple
+    s.bind((hostname, port))
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+socket.error: [Errno 98] Address already in use

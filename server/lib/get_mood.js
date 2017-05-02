@@ -1,7 +1,7 @@
 var mood_vector = {
-	"anger" : ["anger","contempt","disgust"],
+	"angry" : ["anger","contempt","disgust"],
 	"happiness" : ["happiness","surprise"],
-	"fear" : ["fear","neutral","sadness"]
+	"sad" : ["fear","neutral","sadness"]
 };
 
 

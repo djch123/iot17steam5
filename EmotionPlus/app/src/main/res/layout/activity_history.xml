@@ -38,37 +38,58 @@
                 android:id="@+id/day1history"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="hello world1"/>
+                android:padding="1dp"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:text="@string/today"/>
             <TextView
                 android:id="@+id/day2history"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="hello world2"/>
+                android:padding="1dp"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:text="@string/yesterday"/>
             <TextView
                 android:id="@+id/day3history"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="hello world3"/>
+                android:padding="1dp"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:text="@string/the_day_before_yesterday"/>
             <TextView
                 android:id="@+id/day4history"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="hello world4"/>
+                android:padding="1dp"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:text="@string/three_days_ago"/>
             <TextView
                 android:id="@+id/day5history"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="hello world5"/>
+                android:padding="1dp"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:text="@string/four_days_ago"/>
             <TextView
                 android:id="@+id/day6history"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="hello world6"/>
+                android:padding="1dp"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:text="@string/five_days_ago"/>
             <TextView
                 android:id="@+id/day7history"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="hello world7"/>
+                android:padding="1dp"
+                android:background="@drawable/bottom_border"
+                android:gravity="center"
+                android:text="@string/six_days_ago"/>
         </LinearLayout>
     </ScrollView>
 

@@ -4,5 +4,5 @@ var app = express();
 app.use('/music', require('./routers/music'));
 
 app.listen(8080, function() {
-	console.log('listening on port: 3000');
+	console.log('listening on port: 8080');
 });

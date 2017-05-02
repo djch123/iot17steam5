@@ -40,6 +40,11 @@
             android:name=".GameActivity"
             android:label="GameActivity">
         </activity>
+
+        <activity
+            android:name="com.philips.lighting.quickstart.PHHomeActivity"
+            android:label="PHHomeActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.example.jialingliu.emotionplus"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -30,7 +30,10 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:25.3.1'
     compile files('libs/huelocalsdk.jar')
     compile files('libs/huesdkresources.jar')
+    compile files('libs/android-async-http-1.4.9.jar')
+    compile 'com.loopj.android:android-async-http:1.4.9'
     testCompile 'junit:junit:4.12'
     compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile 'org.jsoup:jsoup:1.10.2'
 }

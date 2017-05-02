@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView1"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="Turn On" />
@@ -48,10 +48,21 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView1"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="Turn Off" />
+
+            <Button
+                android:id="@+id/buttonEmotion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView1"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Emotion light" />
 
         </LinearLayout>
 
@@ -60,6 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/hueLayout"
+            android:layout_marginTop="20dp"
             android:text="Music" />
 
 
@@ -78,8 +90,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:text="Rock With You"
-                android:textColor="@android:color/white"
+                android:text="Waiting..."
+                android:textColor="@android:color/black"
                 android:textSize="22sp" />
 
 
@@ -89,42 +101,50 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textViewSong"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:text="Michael Jackson"
-                android:textColor="#80FFFFFF"
+                android:layout_marginTop="20dp"
+                android:text="Waiting..."
+                android:textColor="@android:color/darker_gray"
                 android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/playSong"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_below="@+id/textViewSinger"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/icon_musicplay" />
 
             <ImageView
                 android:id="@+id/nextSong"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_toRightOf="@+id/playSong"
                 android:layout_below="@+id/textViewSinger"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginLeft="30dp"
                 android:background="@drawable/icon_next" />
 
 
             <ImageView
                 android:id="@+id/previousSong"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_toLeftOf="@+id/playSong"
                 android:layout_below="@+id/textViewSinger"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginRight="30dp"
                 android:background="@drawable/icon_lastsong" />
 
 
+            <ImageView
+                android:id="@+id/cover"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_below="@+id/playSong"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_centerHorizontal="true" />
 
 
         </RelativeLayout>
