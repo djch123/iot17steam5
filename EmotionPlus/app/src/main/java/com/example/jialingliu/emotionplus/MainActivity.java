@@ -16,6 +16,8 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.philips.lighting.hue.sdk.PHHueSDK;
+import com.philips.lighting.model.PHBridge;
 import com.philips.lighting.quickstart.PHHomeActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView tapView;
     private TextView tapTextView;
     private Intent intent;
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,16 +46,26 @@ public class MainActivity extends AppCompatActivity {
                     tapTextView.setText(R.string.tap_emotion);
                     return true;
                 case R.id.navigation_homekit:
-                   // intent.setClass(getApplicationContext(), HomekitActivity.class);
-                  //  startActivity(intent);
-                    intent.setClass(getApplicationContext(), PHHomeActivity.class);
-                    startActivity(intent);
+
+                   // if(hueOn==true) {
+                     //   intent.setClass(getApplicationContext(), HomekitActivity.class);
+                       // startActivity(intent);
+                    //}
+                    //else{
+                        intent.setClass(getApplicationContext(), PHHomeActivity.class);
+                        startActivity(intent);
+                    //}
+
                     imageView.setOnClickListener(new View.OnClickListener() {
                         public void onClick(View v) {
-                          //  intent.setClass(getApplicationContext(), HomekitActivity.class);
-                          //  startActivity(intent);
-                            intent.setClass(getApplicationContext(), PHHomeActivity.class);
-                            startActivity(intent);
+                           // if(hueOn==true) {
+                             //   intent.setClass(getApplicationContext(), HomekitActivity.class);
+                               // startActivity(intent);
+                            //}
+                            //else{
+                                intent.setClass(getApplicationContext(), PHHomeActivity.class);
+                                startActivity(intent);
+                            //}
                         }
                     });
                     tapTextView.setText(R.string.tap_homekit);
