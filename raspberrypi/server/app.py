@@ -100,14 +100,18 @@ def getWeeklyEmotion():
 @app.route("/stream")
 def stream():
 	start_motion()
-	time.sleep(10)
 	return render_template('stream.html', ip = conf['pi_ip']) 
 
 def start_motion():
-	os.system("sudo motion -m")
+	
+	p = subprocess.Popen(['sudo', 'motion', '-m'])
+	p.wait()
 
 def stop_motion():
-	os.system("sudo pkill motion")
+	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
+	p.wait()
+	
+
 
 @app.route("/captureinstream")
 def captureinstream():
