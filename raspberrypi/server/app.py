@@ -1,11 +1,11 @@
-from flask import Flask, url_for, jsonify, Response, render_template
+from flask import Flask, url_for, jsonify, Response, render_template, send_from_directory
 import config
 import json
 from capture import capture
 import requests
 from random import randint
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path="", static_folder="static")
 
 fi = open('config.json', 'r')
 config.conf = json.loads(fi.read())
@@ -58,8 +58,7 @@ def capture_helper():
 				headers={'Content-Type': 'application/octet-stream'})
 	res.raise_for_status()
 	j = res.json()
-	print "res" + str(j)
-	print "len:" + str(len(j))
+	
 	global cur_emotion
 	
 	if len(j) > 0 and "happiness" in j:
@@ -97,8 +96,37 @@ def stream():
 
 @app.route("/captureinstream")
 def captureinstream():
-	return 1;
+	try:
+		r = requests.get("http:" + conf['pi_ip'] + ":8080/0/action/snapshot")
+		r.raise_for_status()
+	except Exception as e:
+		print str(e)
+		return str(e), 500
+
+	try:
+		anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
+		image = open(conf["stream_snap_path"])
+		data = image.read()
+		image.close()
+		res = requests.post(url=anaylze_url,
+				data=data,
+				headers={'Content-Type': 'application/octet-stream'})
+		res.raise_for_status()
+		j = res.json()
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
+
+	except Exception as e:
+		print str(e)
+		return str(e), 500
+	
+
+@app.route("/lastsnp")
+def lastsnp():	
+	return send_from_directory('/var/lib/motion', "lastsnap.jpg")
+	
 
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=8888, debug=True, threaded=True)
+
+
