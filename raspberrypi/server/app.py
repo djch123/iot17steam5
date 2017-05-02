@@ -6,7 +6,7 @@ import requests
 from random import randint
 import os, time
 import subprocess
-import picamera
+import picamera, binascii
 
 
 from flask import make_response
