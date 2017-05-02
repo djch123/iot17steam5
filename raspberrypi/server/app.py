@@ -6,7 +6,7 @@ import requests
 from random import randint
 import os, time
 import subprocess
-import picamera, binascii
+import binascii
 
 
 from flask import make_response
@@ -25,6 +25,7 @@ cur_emotion = conf['default_emotion']
 
 global weekly_emotion
 def setup():
+	os.system("rm *.jpg")
 	global weekly_emotion
 	weekly_emotion = {"data":[]}
 	for i in range(0, 6):
@@ -135,11 +136,13 @@ def stop_motion():
 
 @app.route("/test")
 def test():
-	p = subprocess.Popen(['sudo', 'motion', '-m'])
-	p.wait()
-	return str(requests.get("http://" + conf['pi_ip'] + ":8080"))
+	# p = subprocess.Popen(['sudo', 'motion', '-m'])
+	# p.wait()
+	# return str(requests.get("http://" + conf['pi_ip'] + ":8080"))
 
 
+	return render_template("stream.html")
+	# return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=weekly_emotion['data'][0], error="No face:)")
 
 def nocache(view):
     @wraps(view)
@@ -210,7 +213,7 @@ def captureinstream():
 
 	except requests.exceptions.HTTPError as e:
 		print str(e)
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)", static_image_path=image_name)
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Opps, can't find a face:)", static_image_path=image_name)
 	except Exception as e:
 		print 'type is:', e.__class__.__name__
 		print str(e)
