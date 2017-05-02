@@ -20,5 +20,5 @@ while True:
 		time.sleep(int(conf["anaylze_duration"]))
 		r=requests.get(url)
 		print r
-	except Exception as e:
+	except Exceptioas e:
 		print str(e)
