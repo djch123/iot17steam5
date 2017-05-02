@@ -96,18 +96,19 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
 
 def capture_helper(image_path="./image.jpg"):
-	
+	print "capture_helper"
 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
 	capture(image_path)
 	image = open(image_path)
 	data = image.read()
 	image.close()
+	print "request anaylze"
 	res = requests.post(url=anaylze_url,
 				data=data,
 				headers={'Content-Type': 'application/octet-stream'})
 	res.raise_for_status()
 	j = res.json()
-	
+	print "res:" + str(j)
 	global cur_emotion
 	
 	if len(j) > 0 and "happiness" in j:
