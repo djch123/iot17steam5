@@ -106,7 +106,6 @@ def start_motion():
 	
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
-	request
 
 def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
