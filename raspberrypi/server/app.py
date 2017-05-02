@@ -41,7 +41,7 @@ def loop_capture():
 def start_loop():
 	global loop_subprocess
 	loop_subprocess = Process(target=loop_capture)
-	loop_subprocess.daemon = True
+	# loop_subprocess.daemon = True
 	loop_subprocess.start()
 
 def stop_loop():
