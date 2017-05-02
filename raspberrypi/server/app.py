@@ -108,7 +108,7 @@ def start_motion():
 	p.wait()
 	while True:
 		try:
-			r = requests.get("http://" + conf['pi_ip'] + ":8081")
+			r = requests.get("http://" + conf['pi_ip'] + ":8080")
 			r.raise_for_status()
 			break
 		except Exception as e:
