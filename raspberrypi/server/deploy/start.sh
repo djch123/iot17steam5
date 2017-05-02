@@ -1,4 +1,6 @@
 #!/bin/sh
+sudo modprobe bcm2835-v4l2
+
 cd `dirname $0`
 rm -f pid
 
