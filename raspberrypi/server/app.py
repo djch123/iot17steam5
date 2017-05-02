@@ -107,10 +107,13 @@ def start_motion():
 	p = subprocess.Popen(['sudo', 'motion', '-m'])
 	p.wait()
 	while True:
-		r = requests.get("http://" + conf['pi_ip'] + ":8080")
-		if r.status_code == 200: break
-		else: time.sleep(0.5)
-
+		try:
+			r = requests.get("http://" + conf['pi_ip'] + ":8081")
+			r.raise_for_status()
+			break
+		except Exception as e:
+			time.sleep(0.5)
+			continue
 
 def stop_motion():
 	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
