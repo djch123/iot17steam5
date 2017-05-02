@@ -6,7 +6,7 @@ import requests
 from random import randint
 import os.path, time
 
-app = Flask(__name__, static_url_path="", static_folder="static")
+app = Flask(__name__, static_url_path="", static_folder="./")
 
 fi = open('config.json', 'r')
 config.conf = json.loads(fi.read())
