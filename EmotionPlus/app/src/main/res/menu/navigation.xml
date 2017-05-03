@@ -16,10 +16,10 @@
         android:icon="@drawable/ic_search_black_24dp"
         android:title="@string/title_recommendation" />
 
-    <item
-        android:id="@+id/navigation_game"
-        android:icon="@drawable/ic_grade_black_24dp"
-        android:title="@string/title_game" />
+    <!--<item-->
+        <!--android:id="@+id/navigation_game"-->
+        <!--android:icon="@drawable/ic_grade_black_24dp"-->
+        <!--android:title="@string/title_game" />-->
 
 
 </menu>
