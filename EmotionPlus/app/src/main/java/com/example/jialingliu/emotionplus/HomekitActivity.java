@@ -139,7 +139,7 @@ public class HomekitActivity extends AppCompatActivity {
             e.printStackTrace();
         }*/
         final Handler h = new Handler();
-        final int delay = 10000; //milliseconds
+        final int delay = 1000; //milliseconds
 
         h.postDelayed(new Runnable(){
             public void run(){
