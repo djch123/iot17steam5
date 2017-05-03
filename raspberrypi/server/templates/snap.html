@@ -25,7 +25,11 @@
 				{% for key, value in data.iteritems() %}
 				   <tr>
 				        <th> {{ key }} </th>
-				        <td> {{ value }} </td>
+				        {% if value.max %}
+				        	<td style="color:red"> {{ value.number }} </td>
+				        {% else %}
+				        	<td> {{ value.number }} </td>
+				        {% endif%}
 				   </tr>
 				{% endfor %}
 			</tbody>

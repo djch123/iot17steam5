@@ -181,6 +181,18 @@ def nocache(view):
         
     return update_wrapper(no_cache, view)
 
+@app.route("/test")
+def test():
+	global weekly_emotion
+	j = weekly_emotion['data'][0]
+	res = {key:{'number':j[key]} for key in j}
+	max_key = max(res, key=res.get)
+	for key in res:
+		if key == max_key:
+			res[key]['max'] = True
+		else:
+			res[key]['max'] = False
+ 	return render_template('snap.html', data=res)
 
 @app.route("/captureinstream")
 @nocache
@@ -192,7 +204,17 @@ def captureinstream():
 		if os.path.isfile(conf['image_path']): os.remove(conf['image_path'])
 		image_name = "image_"+ str(binascii.b2a_hex(os.urandom(10))) + ".jpg" # using a random name in case of cache
 		capture_helper(image_path=image_name)
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=cur_emotion, static_image_path=image_name)
+
+		res = {key:{'number':cur_emotion[key]} for key in cur_emotion}
+		max_key = max(res, key=res.get)
+		for key in res:
+			if key == max_key:
+				res[key]['max'] = True
+			else:
+				res[key]['max'] = False
+
+		
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=res, static_image_path=image_name)
 
 	except requests.exceptions.HTTPError as e:
 		print str(e)
