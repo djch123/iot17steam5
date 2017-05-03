@@ -90,8 +90,6 @@ def setup():
 	start_loop()
 
 
-
-
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
 
