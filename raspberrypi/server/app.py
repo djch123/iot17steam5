@@ -54,12 +54,12 @@ def stop_loop():
 
 	global loop_subprocess
 
-	p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/stop.sh'])
+	# p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/stop.sh'])
+	# p.wait()
+
+	p = subprocess.Popen(['sudo', 'pkill', "-f" , 'looping.py'])
 	p.wait()
 
-	# if loop_subprocess is not None:
-	# 	loop_subprocess.terminate()
-	# 	loop_subprocess = None
 
 def setup():
 	os.system("rm *.jpg")
@@ -118,6 +118,8 @@ def capture_helper(image_path="./image.jpg"):
 @app.route('/takeaphoto')
 def takeaphoto():
 	try:
+		stop_motion()
+
 		capture_helper()
 		global weekly_emotion, cur_emotion
 		max_emotion_type = max(cur_emotion, key=lambda k: cur_emotion[k])
