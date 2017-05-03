@@ -6,6 +6,9 @@
 <body>
 <!-- <img src="http://{{ ip }}:{{ port }}/lastsnp"/> -->
 <!-- <img src="{{ url_for('static', filename='image.jpg') }}"/> -->
+<div class="well span6 row text-center">
+	<a href="/stream" class="btn btn-info" role="button"> Go back </a>
+</div>
 <img src="/{{static_image_path}}" class="img-responsive center-block"/>
 <div class="container center-block">
 	{% if data is defined %}
