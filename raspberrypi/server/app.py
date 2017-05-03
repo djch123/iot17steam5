@@ -118,8 +118,6 @@ def capture_helper(image_path="./image.jpg"):
 @app.route('/takeaphoto')
 def takeaphoto():
 	try:
-		stop_motion()
-
 		capture_helper()
 		global weekly_emotion, cur_emotion
 		max_emotion_type = max(cur_emotion, key=lambda k: cur_emotion[k])
