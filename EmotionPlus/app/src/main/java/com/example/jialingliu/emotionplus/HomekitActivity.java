@@ -9,7 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
@@ -184,7 +184,7 @@ public class HomekitActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.i("taghere","response"+response);
+//                Log.i("taghere","response"+response);
                 try {
                     double emotionValueNow = 0.0;
                     String emotionNow="";
@@ -223,7 +223,7 @@ public class HomekitActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
-                Log.i("taghere1","failure");
+//                Log.i("taghere1","failure");
             }
 
         });
@@ -239,7 +239,7 @@ public class HomekitActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String response) {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.i("taghere33333","response"+response);
+//                Log.i("taghere33333","response"+response);
                 emotionLight=Integer.parseInt(response);
                 setBrightness(Integer.parseInt(response));
 
@@ -248,7 +248,7 @@ public class HomekitActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
-                Log.i("taghere3333333","failure");
+//                Log.i("taghere3333333","failure");
             }
 
         });
@@ -260,7 +260,7 @@ public class HomekitActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.i("taghere","response"+response);
+//                Log.i("taghere","response"+response);
 
             }
 
@@ -283,7 +283,7 @@ public class HomekitActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
-                Log.i("taghere1","failure");
+//                Log.i("taghere1","failure");
             }
 
         });
@@ -310,12 +310,12 @@ public class HomekitActivity extends AppCompatActivity {
         play=true;
         findViewById(R.id.playSong).setBackgroundResource(R.drawable.icon_musicstop);
 
-        Log.i("name",name);
+//        Log.i("name",name);
         HttpUtils.get("http://172.29.93.218:8080/music?song="+name, null, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.i("taghere","response"+response);
+//                Log.i("taghere","response"+response);
 
 
             }
@@ -333,7 +333,7 @@ public class HomekitActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
-                Log.i("taghere1","failure");
+//                Log.i("taghere1","failure");
             }
 
         });
@@ -346,7 +346,7 @@ public class HomekitActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.i("taghere","response"+response);
+//                //Log.i("taghere","response"+response);
                 findViewById(R.id.playSong).setBackgroundResource(R.drawable.icon_musicplay);
                 play=false;
             }
@@ -364,7 +364,7 @@ public class HomekitActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
-                Log.i("taghere1","failure");
+                //Log.i("taghere1","failure");
             }
 
         });
@@ -376,7 +376,7 @@ public class HomekitActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 // If the response is JSONObject instead of expected JSONArray
-                Log.i("taghere","response"+response);
+                //Log.i("taghere","response"+response);
                 findViewById(R.id.playSong).setBackgroundResource(R.drawable.icon_musicstop);
                 play=true;
 
@@ -395,7 +395,7 @@ public class HomekitActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String x, Throwable e){
-                Log.i("taghere1","failure");
+                //Log.i("taghere1","failure");
             }
 
         });
@@ -456,12 +456,12 @@ public class HomekitActivity extends AppCompatActivity {
 
         @Override
         public void onSuccess() {
-            Log.d(TAG, "success");
+            //Log.d(TAG, "success");
         }
 
         @Override
         public void onStateUpdate(Map<String, String> arg0, List<PHHueError> arg1) {
-            Log.w(TAG, "Light has updated");
+            //Log.w(TAG, "Light has updated");
         }
 
         @Override
@@ -509,7 +509,7 @@ public class HomekitActivity extends AppCompatActivity {
                 InputStream in = new java.net.URL(urldisplay).openStream();
                 mIcon11 = BitmapFactory.decodeStream(in);
             } catch (Exception e) {
-                Log.e("Error", e.getMessage());
+                //Log.e("Error", e.getMessage());
                 e.printStackTrace();
             }
             return mIcon11;
