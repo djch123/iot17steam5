@@ -4,7 +4,7 @@
    "pi_port": "8888",
    "anaylze_ip": "172.29.93.218",
    "anaylze_port": "3000",
-   "anaylze_duration":10,
+   "anaylze_duration":5,
    "stream_snap_path":"/var/lib/motion/lastsnap.jpg",
    "default_emotion": {"anger": 0.0,
       		"contempt": 0.0,

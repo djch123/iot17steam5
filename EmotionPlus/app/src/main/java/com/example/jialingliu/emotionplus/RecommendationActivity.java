@@ -1,11 +1,14 @@
 package com.example.jialingliu.emotionplus;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +16,11 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.squareup.okhttp.MediaType;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.RequestBody;
+import com.squareup.okhttp.Response;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,8 +33,6 @@ import java.util.List;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.HttpEntity;
-import cz.msebera.android.httpclient.HttpResponse;
-import cz.msebera.android.httpclient.client.ClientProtocolException;
 import cz.msebera.android.httpclient.client.HttpClient;
 import cz.msebera.android.httpclient.client.methods.HttpGet;
 import cz.msebera.android.httpclient.entity.BufferedHttpEntity;
@@ -38,6 +44,7 @@ import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
 
 public class RecommendationActivity extends AppCompatActivity {
     private static final int cnt = 6;
+    private static final int cnt2 = 4;
     private TextView restaurantText;
     private TextView sportsText;
 
@@ -52,16 +59,28 @@ public class RecommendationActivity extends AppCompatActivity {
     private ImageView s2;
     private ImageView s3;
     private ImageView s4;
-    private ImageView s5;
-    private ImageView s6;
+
+    private TextView txt1;
+    private TextView txt2;
+    private TextView txt3;
+    private TextView txt4;
+    private TextView txt5;
+    private TextView txt6;
+
+    private TextView txt7;
+    private TextView txt8;
+    private TextView txt9;
+    private TextView txt10;
 
     private String[] mActivities = new String[]{"anger", "contempt", "disgust", "fear", "happiness", "neutral", "sadness", "surprise"};
 
+    private String head = "http://";
+    Typeface face;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendation);
-
+        face = Typeface.createFromAsset(getAssets(), "fonts/DancingScript-Bold.ttf");
         initTextViews();
 
         DisplayImgTask task = new DisplayImgTask();
@@ -69,7 +88,7 @@ public class RecommendationActivity extends AppCompatActivity {
     }
 
     private void initTextViews() {
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/DancingScript-Regular.ttf");
+
 
         restaurantText = (TextView) findViewById(R.id.restauranttext);
         sportsText = (TextView) findViewById(R.id.sportstext);
@@ -83,21 +102,43 @@ public class RecommendationActivity extends AppCompatActivity {
         List<Map<String, String>> sports = recommendations.get("sports");
 
         ImageView[] ivr = new ImageView[] {r1, r2, r3, r4, r5, r6};
-        ImageView[] ivs = new ImageView[] {s1, s2, s3, s4, s5, s6};
-        int[] idsr = new int[] {R.id.img1, R.id.img2, R.id.img3, R.id.img4, R.id.img5, R.id.img6};
-        int[] idss = new int[] {R.id.img7, R.id.img8, R.id.img9, R.id.img10, R.id.img11, R.id.img12};
-        // TODO: 4/30/17 display 6 + 6 images
+        ImageView[] ivs = new ImageView[] {s1, s2, s3, s4};
+        int[] idsr = new int[] {R.id.img1, R.id.img2, R.id.img3, R.id.img4, R.id.img5, R.id.img6,
+                R.id.txt1, R.id.txt2, R.id.txt3, R.id.txt4, R.id.txt5, R.id.txt6};
+        int[] idss = new int[] {R.id.img7, R.id.img8, R.id.img9, R.id.img10, R.id.txt7, R.id.txt8, R.id.txt9, R.id.txt10};
+
+        TextView[] txtr = new TextView[] {txt1, txt2, txt3, txt4, txt5, txt6};
+        TextView[] txts = new TextView[] {txt7, txt8, txt9, txt10};
+
+        // TODO: 4/30/17 display 6 + 4 images
         // restaurants
         for (int i = 0; i < cnt; i++) {
+            final Map<String, String> restaurant = restaurants.get(i);
             ivr[i] = (ImageView) findViewById(idsr[i]);
-            // TODO: 4/30/17 change to restaurant links
-            new DownloadImageTask(ivr[i]).execute("http://java.sogeti.nl/JavaBlog/wp-content/uploads/2009/04/android_icon_256.png");
-            // TODO: 4/30/17 launch yelp
+
+            new DownloadImageTask(ivr[i]).execute(head + restaurant.get("img"));
+
+            ivr[i].setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(restaurant.get("url"))));
+                }
+            });
+
+            txtr[i] = (TextView) findViewById(idsr[i + cnt]);
+            txtr[i].setText(restaurant.get("name"));
+            txtr[i].setTypeface(face);
         }
 
         // sports
-        for (int i = 0; i < cnt; i++) {
-            // TODO: 4/30/17
+        for (int i = 0; i < cnt2; i++) {
+            final Map<String, String> sport = sports.get(i);
+            ivs[i] = (ImageView) findViewById(idss[i]);
+
+            new DownloadImageTask(ivs[i]).execute(head + sport.get("img"));
+
+            txts[i] = (TextView) findViewById(idss[i + cnt2]);
+            txts[i].setText(sport.get("name"));
+            txts[i].setTypeface(face);
         }
     }
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
@@ -109,21 +150,19 @@ public class RecommendationActivity extends AppCompatActivity {
 
         protected Bitmap doInBackground(String... params) {
             // TODO Auto-generated method stub
-            String urlStr = params[0];
+            String urlStr = params[0].replaceAll("\\s+", "%20");
             Bitmap img = null;
+            System.out.println(urlStr);
 
             HttpClient client = new DefaultHttpClient();
             HttpGet request = new HttpGet(urlStr);
-            HttpResponse response;
+            cz.msebera.android.httpclient.HttpResponse response;
             try {
-                response = (HttpResponse)client.execute(request);
+                response = client.execute(request);
                 HttpEntity entity = response.getEntity();
                 BufferedHttpEntity bufferedEntity = new BufferedHttpEntity(entity);
                 InputStream inputStream = bufferedEntity.getContent();
                 img = BitmapFactory.decodeStream(inputStream);
-            } catch (ClientProtocolException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
@@ -142,7 +181,7 @@ public class RecommendationActivity extends AppCompatActivity {
             Map<String, List<Map<String, String>>> data = new HashMap<>();
 
             EmotionHttpClient emotionClient = new EmotionHttpClient();
-            Map<String, String> emotions = emotionClient.getEmotion();
+            String emotions = emotionClient.getEmotion();
 
             RecRestaurantHttpClient restaurantClient = new RecRestaurantHttpClient();
             RecSportsHttpClient sportsClient = new RecSportsHttpClient();
@@ -167,7 +206,7 @@ public class RecommendationActivity extends AppCompatActivity {
 
     private class EmotionHttpClient {
         private final String BASE_URL = String.format("http://%s:8888/emotion", Constant.PI_IP);
-        Map<String, String> getEmotion() {
+        String getEmotion() {
             Document doc = null;
             try {
                 doc = Jsoup.connect(BASE_URL).timeout(1000).get();
@@ -176,56 +215,54 @@ public class RecommendationActivity extends AppCompatActivity {
             }
             String data = "{\"sadness\": 0.0, \"neutral\": 0.0, \"contempt\": 0.0, \"disgust\": 0.0, \"anger\": 0.0, \"surprise\": 0.0, \"fear\": 0.0, \"happiness\": 1.0}";
             if (doc != null) {
-                data = doc.toString();
+                data = doc.body().text();
             }
-            return processJson(data);
-        }
-        private Map<String, String> processJson(String data) {
-            Map<String, String> result = new HashMap<>();
-            JsonParser jsonParser = new JsonParser();
-            JsonObject json = jsonParser.parse(data).getAsJsonObject();
-            System.out.println(json.toString());
-            for (String activity: mActivities) {
-                result.put(activity, Float.toString(json.get(activity).getAsFloat()));
-            }
-            return result;
+            return data;
         }
     }
 
     private class RecRestaurantHttpClient {
         private final String BASE_URL = String.format("http://%s:3000/recommendation/restaurant", Constant.RECOMMENDATION_IP);
-        List<Map<String, String>> getRecommendations(Map<String, String> map) {
-            Document document = null;
+        List<Map<String, String>> getRecommendations(String data) {
+            Response response = null;
             try {
-                document = Jsoup.connect(BASE_URL).timeout(1000)
-                        .data("neutral", map.get("neutral"))
-                        .data("happiness", map.get("happiness"))
-                        .data("disgust", map.get("disgust"))
-                        .data("anger", map.get("anger"))
-                        .data("surprise", map.get("surprise"))
-                        .data("fear", map.get("fear"))
-                        .data("sadness", map.get("sadness"))
-                        .data("contempt", map.get("contempt"))
-                        .post();
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, data);
+                Request request = new Request.Builder()
+                        .url(BASE_URL)
+                        .post(body)
+                        .addHeader("content-type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .addHeader("postman-token", "5126d0c8-6818-69bb-737d-78253c012102")
+                        .build();
+                response = client.newCall(request).execute();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            String data = "[]"; // TODO: 4/30/17 add default recommendations
-            if (document != null) {
-                data = document.toString();
+            String recommendations = "[{\"name\":\"La PanotiQ Bakery Cafe\",\"img\":\"172.29.93.218:3000/restraunts/La PanotiQ Bakery Cafe.jpg\",\"url\":\"https://www.yelp.com/biz/la-panotiq-bakery-cafe-mountain-view?osq=desserts\"},{\"name\":\"Sugar Mama Desserts\",\"img\":\"172.29.93.218:3000/restraunts/Sugar Mama Desserts.jpg\",\"url\":\"https://www.yelp.com/biz/sugar-mama-desserts-sunnyvale-2?osq=desserts\"},{\"name\":\"Sugar Butter Flour\",\"img\":\"172.29.93.218:3000/restraunts/Sugar Butter Flour.jpg\",\"url\":\"https://www.yelp.com/biz/sugar-butter-flour-sunnyvale?osq=desserts\"},{\"name\":\"Sweet & Yummy Bakery\",\"img\":\"172.29.93.218:3000/restraunts/Sweet & Yummy Bakery.jpg\",\"url\":\"https://www.yelp.com/biz/sweet-and-yummy-bakery-mountain-view?osq=desserts\"},{\"name\":\"Tin Pot Creamery\",\"img\":\"172.29.93.218:3000/restraunts/Tin Pot Creamery.jpg\",\"url\":\"https://www.yelp.com/biz/tin-pot-creamery-palo-alto?osq=desserts\"},{\"name\":\"Teaspoon\",\"img\":\"172.29.93.218:3000/restraunts/Teaspoon.jpg\",\"url\":\"https://www.yelp.com/biz/teaspoon-mountain-view?osq=desserts\"}]"; // TODO: 4/30/17 add default recommendations
+            if (response != null) {
+                try {
+                    recommendations = response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            return processJson(data);
+            return processJson(recommendations);
         }
 
         private List<Map<String, String>> processJson(String data) {
+            System.out.println("Recommended restaurants got ");
+            System.out.println(data);
             List<Map<String, String>> result = new ArrayList<>();
             JsonParser jsonParser = new JsonParser();
             JsonArray jsonArray = jsonParser.parse(data).getAsJsonArray();
             for (JsonElement jsonElement : jsonArray) {
                 JsonObject jsonObject = jsonElement.getAsJsonObject();
                 Map<String, String> map = new HashMap<>();
-                map.put("", jsonObject.get("").getAsString()); // TODO: 4/30/17 add keys
-                map.put("", jsonObject.get("").getAsString());
+                map.put("name", jsonObject.get("name").getAsString());
+                map.put("img", jsonObject.get("img").getAsString());
+                map.put("url", jsonObject.get("url").getAsString());
                 result.add(map);
             }
             return result;
@@ -234,9 +271,48 @@ public class RecommendationActivity extends AppCompatActivity {
 
     private class RecSportsHttpClient {
         private final String BASE_URL = String.format("http://%s:3000/recommendation/sports", Constant.RECOMMENDATION_IP);
-        List<Map<String, String>> getRecommendations(Map<String, String> map) {
-            // TODO: 4/30/17 get sports recommendations
-            return null;
+        List<Map<String, String>> getRecommendations(String data) {
+            Response response = null;
+            try {
+                OkHttpClient client = new OkHttpClient();
+                MediaType mediaType = MediaType.parse("application/json");
+                RequestBody body = RequestBody.create(mediaType, data);
+                Request request = new Request.Builder()
+                        .url(BASE_URL)
+                        .post(body)
+                        .addHeader("content-type", "application/json")
+                        .addHeader("cache-control", "no-cache")
+                        .addHeader("postman-token", "5126d0c8-6818-69bb-737d-78253c012102")
+                        .build();
+                response = client.newCall(request).execute();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            String recommendations = "[{\"name\":\"jogging\",\"img\":\"172.29.93.218:3000/sports/jogging.jpg\"},{\"name\":\"tai-chi\",\"img\":\"172.29.93.218:3000/sports/tai-chi.jpg\"}]";
+            if (response != null) {
+                try {
+                    recommendations = response.body().string();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return processJson(recommendations);
+        }
+
+        private List<Map<String, String>> processJson(String data) {
+            System.out.println("Recommended restaurants got ");
+            System.out.println(data);
+            List<Map<String, String>> result = new ArrayList<>();
+            JsonParser jsonParser = new JsonParser();
+            JsonArray jsonArray = jsonParser.parse(data).getAsJsonArray();
+            for (JsonElement jsonElement : jsonArray) {
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
+                Map<String, String> map = new HashMap<>();
+                map.put("name", jsonObject.get("name").getAsString());
+                map.put("img", jsonObject.get("img").getAsString());
+                result.add(map);
+            }
+            return result;
         }
     }
 }

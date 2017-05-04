@@ -1,10 +1,47 @@
 <html>
+<head>
+	<meta charset="utf-8"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 <body>
 <!-- <img src="http://{{ ip }}:{{ port }}/lastsnp"/> -->
-<img src="{{ url_for('static', filename='image.jpg') }}"/>
-<div>
-	{{data}}
-	{{error}}
+<!-- <img src="{{ url_for('static', filename='image.jpg') }}"/> -->
+<div class="well span6 row text-center">
+	<a href="/stream" class="btn btn-info" role="button"> Go back </a>
+</div>
+<img src="/{{static_image_path}}" class="img-responsive center-block"/>
+<div class="container center-block">
+	{% if data is defined %}
+	<div>
+
+		<table class="table table-condensed">
+			<thead>
+		      <tr>
+		        <th>Emotion</th>
+		        <th>Score</th>
+		      </tr>
+		    </thead>
+			<tbody>
+				{% for key, value in data.iteritems() %}
+				   <tr>
+				        <th> {{ key }} </th>
+				        {% if value.max %}
+				        	<td style="color:red"> {{ value.number }} </td>
+				        {% else %}
+				        	<td> {{ value.number }} </td>
+				        {% endif%}
+				   </tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+	<div/>
+	{% endif %}
+	{% if error is defined %}
+	<div class="well span6 row">
+		<p class="text-danger col-xs-2 col-xs-offset-5"> {{error}} <p/>
+	</div>
+	{% endif %}
 </div>
 </body>
 </html>

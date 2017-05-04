@@ -7,7 +7,7 @@ import time
 import requests
 
 
-fi = open('config.json', 'r')
+fi = open('../config.json', 'r')
 config.conf = json.loads(fi.read())
 conf = config.conf
 fi.close()
@@ -16,6 +16,7 @@ url = "http://localhost:8888/takeaphoto"
 
 while True:
 	try:
+		print "looping once..."
 		time.sleep(int(conf["anaylze_duration"]))
 		r=requests.get(url)
 		print r

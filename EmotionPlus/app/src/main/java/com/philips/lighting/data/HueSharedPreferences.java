@@ -3,8 +3,7 @@ package com.philips.lighting.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-
-import com.philips.lighting.hue.sdk.connection.impl.PHBridgeInternal;
+import com.example.jialingliu.emotionplus.Constant;
 
 public class HueSharedPreferences {
     private static final String HUE_SHARED_PREFERENCES_STORE = "HueSharedPrefs";
@@ -34,21 +33,26 @@ public class HueSharedPreferences {
     
     
     public String getUsername() {
-         String username = mSharedPreferences.getString(LAST_CONNECTED_USERNAME, "");
-    	 return username;
+//         String username = mSharedPreferences.getString(LAST_CONNECTED_USERNAME, "");
+//    	 return username;
+        return Constant.HUE_USERNAME;
 	}
 
 	public boolean setUsername(String username) {
-        mSharedPreferencesEditor.putString(LAST_CONNECTED_USERNAME, username);
-        return (mSharedPreferencesEditor.commit());
+//        mSharedPreferencesEditor.putString(LAST_CONNECTED_USERNAME, username);
+//        return (mSharedPreferencesEditor.commit());
+        return true;
 	}
     
     public String getLastConnectedIPAddress() {
-        return mSharedPreferences.getString(LAST_CONNECTED_IP, "");
+//        return mSharedPreferences.getString(LAST_CONNECTED_IP, "");
+        return Constant.HUE_IP;
    }
 
    public boolean setLastConnectedIPAddress(String ipAddress) {
-       mSharedPreferencesEditor.putString(LAST_CONNECTED_IP, ipAddress);
-       return (mSharedPreferencesEditor.commit());
+//       mSharedPreferencesEditor.putString(LAST_CONNECTED_IP, ipAddress);
+//
+//     return (mSharedPreferencesEditor.commit());
+       return true;
    }
 }

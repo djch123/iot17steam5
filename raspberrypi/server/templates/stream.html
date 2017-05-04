@@ -1,6 +1,14 @@
 <html>
+<head>
+	<meta charset="utf-8"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
 <body>
-<img src="http://{{ ip }}:8081"/>
-<a href="/captureinstream"> Take a Photo </a>
+	<div class="container center-block">
+		<img src="http://{{ ip }}:8081"/>
+		<div class="well span6 row text-center">
+			<a href="/captureinstream" class="btn btn-info" role="button"> Take a Photo </a>
+		</div>
+	</div>
 </body>
 </html>

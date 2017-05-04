@@ -4,7 +4,16 @@ import json
 from capture import capture
 import requests
 from random import randint
-import os.path, time
+import os, time
+import subprocess
+import picamera, binascii
+from multiprocessing import Process
+
+
+
+from flask import make_response
+from functools import wraps, update_wrapper
+from datetime import datetime
 
 app = Flask(__name__, static_url_path="", static_folder="./")
 
@@ -17,7 +26,43 @@ global cur_emotion
 cur_emotion = conf['default_emotion']
 
 global weekly_emotion
+
+def loop_capture():
+	url = "http://localhost:8888/takeaphoto"
+
+	while True:
+		try:
+			time.sleep(int(conf["anaylze_duration"]))
+			r=requests.get(url)
+			print "capture in looping......"
+			print r
+		except Exception as e:
+			print str(e)
+
+def start_loop():
+	print "start looping..."
+	global loop_subprocess
+	p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/looping.sh'])
+	p.wait()
+
+	# loop_subprocess = Process(target=loop_capture)
+	# loop_subprocess.daemon = True
+	# loop_subprocess.start()
+
+def stop_loop():
+	print "stop looping..."
+
+	global loop_subprocess
+
+	# p = subprocess.Popen(['sudo', 'bash', '/home/pi/iot17steam5/raspberrypi/server/loop/stop.sh'])
+	# p.wait()
+
+	p = subprocess.Popen(['sudo', 'pkill', "-f" , 'looping.py'])
+	p.wait()
+
+
 def setup():
+	os.system("rm *.jpg")
 	global weekly_emotion
 	weekly_emotion = {"data":[]}
 	for i in range(0, 6):
@@ -42,26 +87,26 @@ def setup():
 	      		"sadness": 0,
 	      		"surprise": 0
 			})
+	start_loop()
 
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 setup()
 
-def capture_helper():
-	stop_motion()
-
-	image_path = conf['image_path']
+def capture_helper(image_path="./image.jpg"):
+	print "capture_helper"
 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
-	print anaylze_url
 	capture(image_path)
 	image = open(image_path)
 	data = image.read()
 	image.close()
+	print "request anaylze"
 	res = requests.post(url=anaylze_url,
 				data=data,
 				headers={'Content-Type': 'application/octet-stream'})
 	res.raise_for_status()
 	j = res.json()
-	
+	print "res:" + str(j)
 	global cur_emotion
 	
 	if len(j) > 0 and "happiness" in j:
@@ -79,7 +124,7 @@ def takeaphoto():
 		today_emotion = weekly_emotion['data'][6]
 		if max_emotion_type in today_emotion: today_emotion[max_emotion_type] += 1
 		
-		return "OK", 200
+		return json.dumps(cur_emotion), 200
 	except Exception as e:
 		print str(e)
 		return str(e), 500
@@ -97,67 +142,96 @@ def getWeeklyEmotion():
 
 @app.route("/stream")
 def stream():
+	print "stream..."
 	start_motion()
-	time.sleep(10)
 	return render_template('stream.html', ip = conf['pi_ip']) 
 
 def start_motion():
-	os.system("sudo motion -m")
+	print "start motion..."
+	stop_loop()
+	p = subprocess.Popen(['sudo', 'motion', '-m'])
+	p.wait()
+	time.sleep(10) # wait for starting...
+
 
 def stop_motion():
-	os.system("sudo pkill motion")
+	print "stop motion..."
+	p = subprocess.Popen(['sudo', 'pkill', 'motion'])
+	p.wait()
+	# make sure that the resource has been released
+	while True:
+		try:
+			capture(conf['image_path'])
+			break
+		except picamera.PiCameraMMALError as e:
+			print e
+			time.sleep(0.5)
+	
+	
+
+def nocache(view):
+    @wraps(view)
+    def no_cache(*args, **kwargs):
+        response = make_response(view(*args, **kwargs))
+        response.headers['Last-Modified'] = datetime.now()
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '-1'
+        return response
+        
+    return update_wrapper(no_cache, view)
+
+@app.route("/test")
+def test():
+	global weekly_emotion
+	j = weekly_emotion['data'][0]
+	res = {key:{'number':j[key]} for key in j}
+	max_key = max(res, key=res.get)
+	for key in res:
+		if key == max_key:
+			res[key]['max'] = True
+		else:
+			res[key]['max'] = False
+ 	return render_template('snap.html', data=res)
 
 @app.route("/captureinstream")
+@nocache
 def captureinstream():
-	# try:
-	# 	r = requests.get("http://" + conf['pi_ip'] + ":8080/0/action/snapshot")
-	# 	time.sleep(5)
-	# 	r.raise_for_status()
-	# except Exception as e:
-	# 	print str(e)
-	# 	return str(e), 500
-
-	# try:
-
-	# 	anaylze_url = "http://" + conf['anaylze_ip'] + ":" + conf['anaylze_port'] + "/analyze"
-	# 	image = open(conf["stream_snap_path"])
-	# 	data = image.read()
-	# 	image.close()
-	# 	res = requests.post(url=anaylze_url,
-	# 			data=data,
-	# 			headers={'Content-Type': 'application/octet-stream'})
-		
-	# 	res.raise_for_status()
-
-	# 	j = res.json()
-	# 	return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=j)
-	# except requests.exceptions.HTTPError as e:
-	# 	print str(e)
-	# 	return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
-	# except Exception as e:
-	# 	print str(e)
-	# 	return str(e), 500
-
-
-	
 	try:
 		stop_motion()
 
-		time.sleep(10)
-		capture_helper()
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=json.dumps(cur_emotion))
+		# time.sleep(10)
+		if os.path.isfile(conf['image_path']): os.remove(conf['image_path'])
+		image_name = "image_"+ str(binascii.b2a_hex(os.urandom(10))) + ".jpg" # using a random name in case of cache
+		capture_helper(image_path=image_name)
+
+		res = {key:{'number':cur_emotion[key]} for key in cur_emotion}
+		max_key = max(res, key=res.get)
+		for key in res:
+			if key == max_key:
+				res[key]['max'] = True
+			else:
+				res[key]['max'] = False
+
+		
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), data=res, static_image_path=image_name)
+
 	except requests.exceptions.HTTPError as e:
 		print str(e)
-		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Can't find a face:)")
+		return render_template('snap.html', ip=conf['pi_ip'], port=str(conf['pi_port']), error="Opps, can't find a face:)", static_image_path=image_name)
 	except Exception as e:
+		print 'type is:', e.__class__.__name__
 		print str(e)
 		return str(e), 500
+	finally:
+		start_loop()
 		
 
 
 	
 
 @app.route("/lastsnp")
+@nocache
 def lastsnp():	
 	return send_from_directory(os.path.dirname(__file__), "image.jpg")
 	

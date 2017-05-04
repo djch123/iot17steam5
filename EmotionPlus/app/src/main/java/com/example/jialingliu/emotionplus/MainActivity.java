@@ -81,18 +81,18 @@ public class MainActivity extends AppCompatActivity {
                     });
                     tapTextView.setText(R.string.tap_recommendations);
                     return true;
-                case R.id.navigation_game:
-//                    mTextMessage.setText(R.string.title_game);
-                    intent.setClass(getApplicationContext(), GameActivity.class);
-                    startActivity(intent);
-                    imageView.setOnClickListener(new View.OnClickListener() {
-                        public void onClick(View v) {
-                            intent.setClass(getApplicationContext(), GameActivity.class);
-                            startActivity(intent);
-                        }
-                    });
-                    tapTextView.setText(R.string.tap_game);
-                    return true;
+//                case R.id.navigation_game:
+////                    mTextMessage.setText(R.string.title_game);
+//                    intent.setClass(getApplicationContext(), GameActivity.class);
+//                    startActivity(intent);
+//                    imageView.setOnClickListener(new View.OnClickListener() {
+//                        public void onClick(View v) {
+//                            intent.setClass(getApplicationContext(), GameActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
+//                    tapTextView.setText(R.string.tap_game);
+//                    return true;
             }
             return false;
         }
