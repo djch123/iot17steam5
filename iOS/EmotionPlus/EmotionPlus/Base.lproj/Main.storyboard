@@ -22,8 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR PREFERENCES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUP-y2-tvQ">
-                                <rect key="frame" x="84" y="67" width="208" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emotion History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUP-y2-tvQ">
+                                <rect key="frame" x="116" y="67" width="144" height="25"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="21"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -89,14 +89,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="happyman" translatesAutoresizingMaskIntoConstraints="NO" id="pRN-ud-5RD">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="572"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Iq-j1-co2">
-                                <rect key="frame" x="313" y="580" width="46" height="30"/>
+                                <rect key="frame" x="281" y="580" width="78" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="takePhoto:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="uQ5-gX-Xor"/>
                                 </connections>
@@ -108,7 +104,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ6-LM-73q">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQ6-LM-73q">
                                 <rect key="frame" x="85" y="582" width="66" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
@@ -120,7 +116,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Game" image="second" id="cPa-gy-q4n"/>
                     <connections>
-                        <outlet property="imageView" destination="pRN-ud-5RD" id="olB-OD-L8X"/>
+                        <outlet property="button" destination="0Iq-j1-co2" id="slh-HJ-tKn"/>
                         <outlet property="score" destination="sQ6-LM-73q" id="yMg-sX-JfU"/>
                     </connections>
                 </viewController>
@@ -346,7 +342,6 @@
         <image name="Play" width="128" height="128"/>
         <image name="Previous" width="128" height="128"/>
         <image name="first" width="30" height="30"/>
-        <image name="happyman" width="2800" height="1867"/>
         <image name="second" width="30" height="30"/>
     </resources>
 </document>

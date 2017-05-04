@@ -29,7 +29,7 @@ class RecomViewController: UIViewController {
         self.Core()
         
         weak var timer: Timer?
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
             // do something here
             self?.Core()
         }
@@ -157,6 +157,11 @@ class RecomViewController: UIViewController {
     var sportNameArr : [String] = []
     
     func SetRestaurants() {
+        let subViews = self.restaurantsScrollView.subviews
+        for subview in subViews{
+            subview.removeFromSuperview()
+        }
+        
         for (i, restaurant) in self.restaurantList {
             //            print ("new image!!!!!")
             let img = restaurant["img"]
@@ -191,6 +196,8 @@ class RecomViewController: UIViewController {
         }
         
         self.restaurantsName.text = self.restaurantNameArr[0]
+        self.changeRestaurantPage(idx: 0)
+        self.restaurantIdx = 0
     }
     
     var restaurantIdx = Int(0)
@@ -219,6 +226,12 @@ class RecomViewController: UIViewController {
     }
     
     func SetSports() {
+        
+        let subViews = self.sportScrollView.subviews
+        for subview in subViews{
+            subview.removeFromSuperview()
+        }
+        
         for (i, sport) in self.sportList {
             //            print ("new image!!!!!")
             let img = sport["img"]
@@ -246,6 +259,8 @@ class RecomViewController: UIViewController {
         }
         
         self.sportName.text = self.sportNameArr[0]
+        self.changeSportPage(idx: 0)
+        self.sportIdx = 0
 //        print ("sports count")
 //        print (self.sportList.count)
 //        print (self.sportNameArr.count)

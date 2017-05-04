@@ -110,7 +110,7 @@ class MainViewController: UIViewController, ChartViewDelegate, IAxisValueFormatt
         let set1 : RadarChartDataSet = RadarChartDataSet(values: loadData, label: date)
         set1.setColor(UIColor(red: 103/255.0, green: 110/255.0, blue: 110/255.0, alpha: 1.0))
         set1.fillColor = UIColor(red: 103/255.0, green: 110/255.0, blue: 110/255.0, alpha: 1.0)
-        set1.drawFilledEnabled = true;
+        set1.drawFilledEnabled = true
         set1.fillAlpha = 0.7
         set1.lineWidth = 2.0
         set1.drawHighlightCircleEnabled = true
@@ -162,7 +162,6 @@ class MainViewController: UIViewController, ChartViewDelegate, IAxisValueFormatt
         return cell
     }
     
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
         var text = ""
         if(indexPath.row != 0) {
@@ -205,12 +204,10 @@ class MainViewController: UIViewController, ChartViewDelegate, IAxisValueFormatt
                 dayHistory.append(day["fear"] as! Int)
                 dayHistory.append(day["sadness"] as! Int)
                 dayHistory.append(day["contempt"] as! Int)
-                self.weekHistory.append(dayHistory)
+                self.weekHistory.insert(dayHistory, at: 0)
             }
         }
         task.resume()
     }
-
-
 }
 

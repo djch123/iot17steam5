@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220D04C11EB94E350007DEC8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D04C01EB94E350007DEC8 /* ViewController.swift */; };
 		2278DE141EB6FDBE00AD9472 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE121EB6FDBE00AD9472 /* Alamofire.framework */; };
 		2278DE151EB6FDBE00AD9472 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE121EB6FDBE00AD9472 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2278DE161EB6FDBE00AD9472 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */; };
@@ -104,6 +105,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		220D04C01EB94E350007DEC8 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2278DE121EB6FDBE00AD9472 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		2278DE131EB6FDBE00AD9472 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		22A7F4F71EB443B200D6F0FD /* EmotionPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmotionPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 				22A7F52C1EB4447D00D6F0FD /* RecomViewController.swift */,
 				22FDD5711EB6A44B00FD5FA4 /* HistoryTableViewTableViewController.swift */,
 				22FDD56F1EB6A18B00FD5FA4 /* HistoryTableViewCell.swift */,
+				220D04C01EB94E350007DEC8 /* ViewController.swift */,
 			);
 			path = EmotionPlus;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				22A7F4FF1EB443B200D6F0FD /* GameViewController.swift in Sources */,
 				22FDD5471EB69A2700FD5FA4 /* RadarMarkerView.swift in Sources */,
 				22A7F4FB1EB443B200D6F0FD /* AppDelegate.swift in Sources */,
+				220D04C11EB94E350007DEC8 /* ViewController.swift in Sources */,
 				22FDD5721EB6A44B00FD5FA4 /* HistoryTableViewTableViewController.swift in Sources */,
 				22FDD5491EB69A2700FD5FA4 /* XYMarkerView.swift in Sources */,
 				22A7F52B1EB4444600D6F0FD /* HomeKitViewController.swift in Sources */,
@@ -676,6 +680,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = EmotionPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iot17steam5.EmotionPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -699,6 +704,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = EmotionPlus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iot17steam5.EmotionPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";

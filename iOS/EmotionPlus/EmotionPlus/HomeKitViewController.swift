@@ -13,7 +13,7 @@ import SwiftyJSON
 
 class HomeKitViewController: UIViewController {
     
-    var IP_ADDR = "http://10.0.21.248"
+    var IP_ADDR = "http://10.0.14.6"
     var LIGHT_ID = "2"
     var USERNAME = "-rJnC9YCU0BdyWcpaJoHV4E9Yv3pL2hWPxQHbPPq"
     
@@ -74,7 +74,7 @@ class HomeKitViewController: UIViewController {
         self.Core()
         
         weak var timer: Timer?
-        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) { [weak self] _ in
+        timer = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: true) { [weak self] _ in
             // do something here
             self?.Core()
         }
